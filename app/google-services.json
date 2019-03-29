@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "762788481213",
+    "firebase_url": "https://tripcollecter-6499f.firebaseio.com",
+    "project_id": "tripcollecter-6499f",
+    "storage_bucket": "tripcollecter-6499f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762788481213:android:6fa27093f939f72b",
+        "android_client_info": {
+          "package_name": "com.seunggom.tripmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762788481213-16m5u5q4u6ts3imk7c57o899j6emhpr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgMt_4s2PToiXiIe_XeOgw97s0x58vXQo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
