@@ -15,8 +15,12 @@
       },
       "oauth_client": [
         {
-          "client_id": "762788481213-16m5u5q4u6ts3imk7c57o899j6emhpr0.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "762788481213-hr1jabrsefj0dilt23knjanksv6ohnae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.seunggom.tripmanager",
+            "certificate_hash": "6fc9c6c0e72707c7272808cea12a19aabfde8e91"
+          }
         }
       ],
       "api_key": [
@@ -25,15 +29,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762788481213-16m5u5q4u6ts3imk7c57o899j6emhpr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
