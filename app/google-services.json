@@ -21,6 +21,10 @@
             "package_name": "com.seunggom.tripmanager",
             "certificate_hash": "6fc9c6c0e72707c7272808cea12a19aabfde8e91"
           }
+        },
+        {
+          "client_id": "762788481213-16m5u5q4u6ts3imk7c57o899j6emhpr0.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [

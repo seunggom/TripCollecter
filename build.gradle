@@ -13,7 +13,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.google.gms:google-services:4.1.0'
+        classpath 'com.google.gms:google-services:4.0.1'
     }
 }
 
@@ -21,7 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        mavenCentral()
+        mavenCentral() // facebook-android-sdk 라이브러리를 gradle이 인식하도록 하기 위한 코드
         
     }
 }
