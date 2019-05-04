@@ -9,7 +9,7 @@
             app:srcCompat="@drawable/login_img" android:id="@+id/login_img" android:layout_height="match_parent"
             android:layout_width="match_parent" android:scaleType="centerCrop" android:visibility="visible"
             android:alpha="0.5"
-    />
+            android:contentDescription="TODO"/>
     <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
 
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="208dp"
+                android:layout_height="200dp"
                 android:id="@+id/image_logo"
                 android:gravity="center"
                 android:layout_marginBottom="50dp"

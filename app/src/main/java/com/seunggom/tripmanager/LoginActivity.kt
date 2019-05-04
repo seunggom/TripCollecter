@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
     fun moveMainPage(user : FirebaseUser?) {
         if (user != null) {
             toast(getString(R.string.signin_complete))
-            startActivity<MapActivity>()
+            startActivity<MainActivity>()
             finish()
         }
     }
@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
 
     fun facebookLogin() {
         progress_bar.visibility = View.VISIBLE
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email")) // 이메일 정보만 가져옴
         LoginManager.getInstance().registerCallback(callbackManager, object: FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
                 handleFacebookAccessToken(result?.accessToken)
@@ -124,6 +124,6 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
 
         // 자동 로그인 설정
-        //moveMainPage(auth?.currentUser)
+        moveMainPage(auth?.currentUser)
     }
 }
