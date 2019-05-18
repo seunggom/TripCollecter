@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -25,30 +27,34 @@ android {
 
 dependencies {
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
-
-    implementation 'com.android.support:design:28.0.0' // 안드로이드 material Design을 관리하는 모듈
-    implementation 'com.android.support:recyclerview-v7:28.0.0' // 화면을 grid로 만들어주는 recyclerview를 관리하는 모듈
-
+    implementation 'com.android.support:design:28.0.0'
+    // 안드로이드 material Design을 관리하는 모듈
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    // 화면을 grid로 만들어주는 recyclerview를 관리하는 모듈
     implementation 'com.android.support:animated-vector-drawable:28.0.0'
     implementation 'com.android.support:support-media-compat:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
-
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.google.firebase:firebase-auth:16.2.1' // firebase 로그인 관리하는 라이브러리(모듈)
+    implementation 'com.google.firebase:firebase-auth:16.2.1'
+    // firebase 로그인 관리하는 라이브러리(모듈)
     implementation 'com.google.firebase:firebase-firestore:18.2.0'
+    implementation 'com.google.firebase:firebase-storage:12.0.1'
     implementation 'com.android.support:support-vector-drawable:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.firebase:firebase-core:16.0.8'
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    // 페북 로그인 관리 모듈. 인증 성공할경우 JWT(json web token) 넘겨줌
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    kapt "android.arch.lifecycle:compiler:1.0.0"
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)' // 페북 로그인 관리 모듈. 인증 성공할경우 JWT(json web token) 넘겨줌
 }
 
 apply plugin: 'com.google.gms.google-services'
