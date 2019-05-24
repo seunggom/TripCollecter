@@ -8,28 +8,286 @@
             android:layout_height="match_parent">
 
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/map_outline" android:id="@+id/map_outline"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                android:adjustViewBounds="true"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_gwangju" android:scaleType="centerCrop"/>
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/map_jeju1" android:id="@+id/map_jeju1"
-                android:adjustViewBounds="true" app:layout_constraintBottom_toBottomOf="@+id/map_outline"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jeju1" android:scaleType="centerCrop"/>
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/map_jeju2" android:id="@+id/map_jeju2"
-                android:adjustViewBounds="true" app:layout_constraintBottom_toBottomOf="@+id/map_outline"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jeju2" android:scaleType="centerCrop"/>
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/map_gwangju"
-                android:id="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@+id/map_outline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/map_outline"
-                app:layout_constraintHorizontal_bias="0.0" android:adjustViewBounds="true"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_boseong" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_damyang" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_gangjin" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_goheung" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_gokseong" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_gurye" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_gwangyang" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_haenam" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_hampyeong" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_hwasun" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_jangheung" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_jangseong" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_jindo" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_mokpo" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_muan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_naju" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_sinan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_suncheon" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_wando" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_yeongam" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_yeonggwang" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jn_yeosu" android:scaleType="centerCrop"/>
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_buan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_gimje" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_gochang" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_gunsan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_iksan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_imsil" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_jangsu" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_jeongeup" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_jeonju" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_jinan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_muju" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_namwon" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_sunchang" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_jb_wanju" android:scaleType="centerCrop"/>
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_busan" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_daegu" android:scaleType="centerCrop"/>
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_daejeon" android:scaleType="centerCrop"/>
+
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_sejong" android:scaleType="centerCrop"/>
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_ulsan" android:scaleType="centerCrop"/>
+
+
+
+
+        <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:srcCompat="@android:drawable/alert_light_frame"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_outline" android:scaleType="centerCrop"/>
+
+
+
     </android.support.constraint.ConstraintLayout>
 </com.seunggom.tripmanager.ZoomView>
