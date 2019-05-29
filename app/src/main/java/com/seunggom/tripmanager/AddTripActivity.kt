@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -13,53 +15,82 @@ import kotlinx.android.synthetic.main.activity_add_trip.*
 import org.jetbrains.anko.toast
 import java.util.*
 import android.view.View
+import android.widget.DatePicker
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.AdapterView
+import kotlinx.android.synthetic.main.edit_region.*
+
 
 class AddTripActivity : AppCompatActivity() {
+    var title: String? = null
 
-    var start_cal = Calendar.getInstance()
-    val s_year = start_cal.get(Calendar.YEAR)
-    val s_month = start_cal.get(Calendar.MONTH)
-    val s_day = start_cal.get(Calendar.DAY_OF_MONTH)
-    var end_cal = Calendar.getInstance()
-    val e_year = end_cal.get(Calendar.YEAR)
-    val e_month = end_cal.get(Calendar.MONTH)
-    val e_day = end_cal.get(Calendar.DAY_OF_MONTH)
 
-    inner class AddRegionViewAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-        override fun getItemCount(): Int {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+    var list = arrayListOf<addRegionData>(
+        addRegionData("전라남도 순천")
+    )
 
-        override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-
-        }
-
-        override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.add_region, p0, false)
-
-            return CustomViewHolder(view)
-        }
-
-        inner class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_trip)
 
-        val mAdapter = AddRegionViewAdapter(this)
+        val mAdapter = AddRegionViewAdapter(this, list)
         mRecyclerView.adapter = mAdapter
-/*
-        startDate.setOnClickListener {
-            showDatePicker(startDate)
-            startDate.setText("${start_cal.get(Calendar.YEAR)}/${start_cal.get(Calendar.MONTH)+1}/${start_cal.get(Calendar.DAY_OF_MONTH)}")
+
+        val lm = LinearLayoutManager(this)
+        mRecyclerView.layoutManager = lm
+        mRecyclerView.setHasFixedSize(true)
+
+
+        date1button.setOnClickListener { view ->
+            var calendar = Calendar.getInstance()
+            var year = calendar.get(Calendar.YEAR)
+            var month = calendar.get(Calendar.MONTH)
+            var day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            var date_listener  = object : DatePickerDialog.OnDateSetListener {
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                    date1text.text = "${year}.${month + 1}.${dayOfMonth}"
+                }
+            }
+            var builder = DatePickerDialog(this, date_listener, year, month, day)
+            builder.show()
         }
-        endDate.setOnClickListener {
-            showDatePicker(endDate)
-            endDate.setText("${end_cal.get(Calendar.YEAR)}/${end_cal.get(Calendar.MONTH)+1}/${end_cal.get(Calendar.DAY_OF_MONTH)}")
+
+        date2button.setOnClickListener { view ->
+            var calendar = Calendar.getInstance()
+            var year = calendar.get(Calendar.YEAR)
+            var month = calendar.get(Calendar.MONTH)
+            var day = calendar.get(Calendar.DAY_OF_MONTH)
+
+            var date_listener  = object : DatePickerDialog.OnDateSetListener {
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                    date2text.text = "${year}.${month + 1}.${dayOfMonth}"
+                }
+            }
+
+            var builder = DatePickerDialog(this, date_listener, year, month, day)
+            builder.show()
+
         }
-        */
+
+        addRegionBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
+            builder.setView(view)
+
+            val spinner1_list = arrayOf("특별/광역시", "경기도", "강원도", "충청북도", "충청남도",
+                "경상북도", "경상남도", "전라북도", "전라남도", "제주특별자치시")
+
+//            spinner1.adapter = ArrayAdapter(this, R.layout.edit_region, spinner1_list)
+
+            builder.show()
+
+        }
+
     }
+
 
 
 /*
