@@ -2,6 +2,7 @@ package com.seunggom.tripmanager
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -76,41 +77,63 @@ class AddTripActivity : AppCompatActivity() {
         }
 
         addRegionBtn.setOnClickListener {
+            var name1 : String? = null
+            var name2 : String? = null
+            var imageUrl: Set<String>? = null
+
+
             val builder = AlertDialog.Builder(this)
             val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
             builder.setView(view)
 
-            val spinner1_list = arrayOf("특별/광역시", "경기도", "강원도", "충청북도", "충청남도",
-                "경상북도", "경상남도", "전라북도", "전라남도", "제주특별자치시")
+            val sp1 = findViewById(R.id.spinner1) as Spinner
+            val sp1Adapter = ArrayAdapter.createFromResource(this, R.array.si_do, R.layout.edit_region)
+            sp1.adapter = sp1Adapter
+            sp1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    name1 = sp1.selectedItem.toString()
+                }
 
-//            spinner1.adapter = ArrayAdapter(this, R.layout.edit_region, spinner1_list)
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
 
-            builder.show()
+            }
 
+            val sp2 = findViewById(R.id.spinner2) as Spinner
+            val sp2Adapter = ArrayAdapter.createFromResource(this, R.array.si_do, R.layout.edit_region)
+            sp1.adapter = sp2Adapter
+            sp1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    name2 = sp2.selectedItem.toString()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            }
+
+            val dialog = builder.create()
+
+            addFinishBtn.setOnClickListener {
+                list.add(addRegionData(name1, name2))
+
+                mAdapter.notifyItemInserted(0)
+
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
+
 
     }
 
 
 
-/*
-    fun showDatePicker(item: TextView) {
 
-        if (item == startDate) {
-            DatePickerDialog(this, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-                start_cal.set(Calendar.YEAR, year)
-                start_cal.set(Calendar.MONTH, month)
-                start_cal.set(Calendar.DAY_OF_MONTH, day)
-            }, start_cal.get(Calendar.YEAR), start_cal.get(Calendar.MONTH), start_cal.get(Calendar.DAY_OF_MONTH)).show()
-        }
-        else if(item == endDate) {
-            DatePickerDialog(this, DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-                end_cal.set(Calendar.YEAR, year)
-                end_cal.set(Calendar.MONTH, month)
-                end_cal.set(Calendar.DAY_OF_MONTH, day)
-            }, end_cal.get(Calendar.YEAR), end_cal.get(Calendar.MONTH), end_cal.get(Calendar.DAY_OF_MONTH)).show()
-        }
-    }
-    */
 
 }

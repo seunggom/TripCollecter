@@ -31,7 +31,7 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
         val d = itemView.findViewById<ImageView>(R.id.imageView)
 
         fun bind(list: addRegionData, context: Context) {
-            a.text = list.name
+            a.text = list.name1
         }
     }
 }
