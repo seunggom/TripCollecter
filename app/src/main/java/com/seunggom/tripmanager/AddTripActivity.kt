@@ -88,7 +88,7 @@ class AddTripActivity : AppCompatActivity() {
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
                     list.add(addRegionData(name1, name2))
-                    mAdapter.notifyItemInserted(0) }
+                    mAdapter.notifyDataSetChanged() }
                 .setNeutralButton("취소", null)
                 .create()
 

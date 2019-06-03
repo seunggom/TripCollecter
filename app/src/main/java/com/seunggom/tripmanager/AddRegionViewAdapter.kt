@@ -27,11 +27,13 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
 
 
     inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val a = itemView.findViewById<TextView>(R.id.name)
-        val d = itemView.findViewById<ImageView>(R.id.imageView)
+        val a = itemView.findViewById<TextView>(R.id.name1text)
+        val b = itemView.findViewById<TextView>(R.id.name2text)
+        //val d = itemView.findViewById<ImageView>(R.id.imageView)
 
         fun bind(list: addRegionData, context: Context) {
             a.text = list.name1
+            b.text = list.name2
         }
     }
 }
