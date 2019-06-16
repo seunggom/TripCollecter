@@ -45,8 +45,8 @@ class ListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mainView?.recyclerView?.layoutManager = LinearLayoutManager(activity)
-        mainView?.recyclerView?.adapter = RecyclerViewAdapter()
+        //mainView?.recyclerView?.layoutManager = LinearLayoutManager(activity)
+        //mainView?.recyclerView?.adapter = RecyclerViewAdapter()
 
     }
 

@@ -20,10 +20,21 @@ buildscript {
 
 allprojects {
     repositories {
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                def requested = details.requested
+                if (requested.group == 'com.google.android.gms') {
+                    details.useVersion '12.0.1'
+                }
+                if (requested.group == 'com.google.firebase') {
+                    details.useVersion '12.0.1'
+                }
+            }
+        }
         google()
         jcenter()
         mavenCentral() // facebook-android-sdk 라이브러리를 gradle이 인식하도록 하기 위한 코드
-        
+        maven {url 'https://jitpack.io'}
     }
 }
 

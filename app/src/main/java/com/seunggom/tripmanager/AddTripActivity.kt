@@ -6,35 +6,59 @@ import android.content.DialogInterface
 import android.database.Cursor
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_add_trip.*
-import org.jetbrains.anko.toast
 import java.util.*
 import android.view.View
-import android.widget.DatePicker
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.AdapterView
 import kotlinx.android.synthetic.main.edit_region.*
 import kotlinx.android.synthetic.main.edit_region.view.*
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.support.v4.app.ActivityCompat
+import android.widget.*
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.seunggom.tripmanager.model.ContentDTO
+import org.jetbrains.anko.*
+import java.text.SimpleDateFormat
+import android.content.ClipData
+import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity
+import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent
 
+
+private val REQUEST_READ_EXTERNAL_STORAGE = 1000
 
 class AddTripActivity : AppCompatActivity() {
+    val PICK_IMAGE_FROM_ALBUM = 0
     var title: String? = null
-
-
+    var photoUri : List<String>? = null
     var list = arrayListOf<addRegionData>()
 
+    var storage: FirebaseStorage? = null
+    var firestore: FirebaseFirestore? = null
+    private var auth: FirebaseAuth? = null
+
+    var resultOK : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_trip)
+
+        storage = FirebaseStorage.getInstance()
+        firestore = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         val mAdapter = AddRegionViewAdapter(this, list)
         mRecyclerView.adapter = mAdapter
@@ -80,7 +104,7 @@ class AddTripActivity : AppCompatActivity() {
             var name1 : String? = null
             var si_do_pos : Int = 0
             var name2 : String? = null
-            var imageUrl: Set<String>? = null
+            var imageUrl: MutableSet<String>? = null
 
 
             val builder = AlertDialog.Builder(this)
@@ -92,7 +116,9 @@ class AddTripActivity : AppCompatActivity() {
                 .setNeutralButton("취소", null)
                 .create()
 
-            val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
+            //val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
+            val view = layoutInflater.inflate(R.layout.edit_region, null)
+            //Glide.with(view).load(R.drawable.abc_ic_star_black_48dp).into(view.imageView1)
             builder.setView(view)
 
             val sp1Adapter = ArrayAdapter.createFromResource(this, R.array.si_do, android.R.layout.simple_spinner_dropdown_item)
@@ -134,14 +160,120 @@ class AddTripActivity : AppCompatActivity() {
                 }
             }
 
+            view.photoAddBtn.setOnClickListener {
+
+               // val photoPickerIntent = Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
+               // photoPickerIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+              //  photoPickerIntent.type = "image/*"
+               // startActivityForResult(Intent.createChooser(photoPickerIntent, "사진을 선택하세요."), PICK_IMAGE_FROM_ALBUM)
+
+
+                val intent = YPhotoPickerIntent(this)
+                intent.setMaxSelectCount(9)
+                intent.setShowCamera(false)
+                intent.setShowGif(false)
+                intent.setSelectCheckBox(false)
+                intent.setMaxGrideItemCount(3)
+                startActivityForResult(intent, PICK_IMAGE_FROM_ALBUM)
+            }
+
             builder.show()
         }
 
 
+        addDataButton.setOnClickListener { contentUpload() }
     }
 
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        var photos : List<String>? =null
+
+        if(requestCode == PICK_IMAGE_FROM_ALBUM) {
+            if(resultCode == Activity.RESULT_OK) {
+                if(data!=null) {
+                    photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS)
+                }
+
+                //resultOK = true
+                //val view = layoutInflater.inflate(R.layout.edit_region, null)
+                //view.imageView1.setImageResource(R.drawable.abc_ic_star_black_36dp)
+
+                /*
+                val Uri = data!!.data
+                val clipData = data!!.clipData
+
+
+                if (clipData != null) {
+                    for (i in 0..8) {
+                        if (i < clipData.getItemCount()) {
+                            val urione = clipData.getItemAt(i).uri
+                            when (i) {
+                               // 0 -> view.imageView1.setImageURI(urione)
+                                1 -> view.imageView2.setImageURI(urione)
+                                2 -> view.imageView3.setImageURI(urione)
+                                3 -> view.imageView4.setImageURI(urione)
+                                4 -> view.imageView5.setImageURI(urione)
+                                5 -> view.imageView6.setImageURI(urione)
+                                6 -> view.imageView7.setImageURI(urione)
+                                7 -> view.imageView8.setImageURI(urione)
+                                8 -> view.imageView9.setImageURI(urione)
+                            }
+                        }
+                    }
+
+                }*/
+
+                toast("이미지 선택 완료")
+                photoUri = photos
+            }
+        }
+    }
+
+
+    fun contentUpload() {
+        val contentDTO = ContentDTO()
+
+        contentDTO.title = addTripName.text.toString()
+        contentDTO.startDate = date1text.text.toString()
+        contentDTO.endDate = date2text.text.toString()
+        contentDTO.regionlist = list
+        contentDTO.rating = ratingBar.numStars
+        contentDTO.explain = explainText.text.toString()
+        contentDTO.userId = auth?.currentUser?.email
+
+        firestore?.collection("trips")?.document()?.set(contentDTO)
+        Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
+
+        /*
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_.png"
+        val storageRef = storage?. reference?.child("images")?.child(imageFileName)
+        storageRef?.putFile(photoUri!!)?.addOnSuccessListener { taskSnapshot ->
+            Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
+
+            val uri = taskSnapshot.downloadUrl
+
+            val contentDTO = ContentDTO()
+
+            contentDTO.title = addTripName.text.toString()
+            contentDTO.startDate = date1text.text.toString()
+            contentDTO.endDate = date2text.text.toString()
+            contentDTO.regionlist = list
+            contentDTO.rating = ratingBar.numStars
+            contentDTO.explain = explainText.text.toString()
+            contentDTO.userId = auth?.currentUser?.email
+
+            firestore?.collection("trips")?.document()?.set(contentDTO)
+
+            setResult(Activity.RESULT_OK)
+            finish()
+        }
+
+*/
+
+    }
 
 }
