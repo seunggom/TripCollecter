@@ -10,28 +10,76 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <TextView
-                android:text="지역 이름"
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/name1text" android:textSize="18sp"
-                android:layout_marginLeft="5dp" android:layout_marginTop="5dp"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/name2text" android:textSize="24sp"
-                android:textAllCaps="false" android:layout_marginLeft="5dp" android:layout_marginBottom="5dp"/>
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="지역 이름"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/name1text" android:textSize="18sp"
+                    android:layout_marginLeft="5dp" android:layout_marginTop="5dp"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content" android:id="@+id/name2text" android:textSize="24sp"
+                    android:textAllCaps="false" android:layout_marginLeft="5dp" android:layout_marginTop="5dp"/>
+        </LinearLayout>
         <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:layout_margin="3dp">
 
             <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
                 <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
-                        android:id="@+id/imageView2"/>
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/imageView1" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/imageView2" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                        android:id="@+id/imageView3" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
             </TableRow>
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent"/>
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent"/>
+            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView4" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView5" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView6" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+            </TableRow>
+            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView7" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView8" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+                <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
+                        android:id="@+id/imageView9" android:scaleType="centerCrop" android:visibility="gone"
+                        android:layout_margin="2dp"/>
+            </TableRow>
             <TableRow android:layout_width="match_parent" android:layout_height="match_parent"/>
         </TableLayout>
         <View

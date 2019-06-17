@@ -34,16 +34,13 @@ import com.seunggom.tripmanager.model.ContentDTO
 import org.jetbrains.anko.*
 import java.text.SimpleDateFormat
 import android.content.ClipData
-import com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity
-import com.yongbeam.y_photopicker.util.photopicker.utils.YPhotoPickerIntent
 
 
-private val REQUEST_READ_EXTERNAL_STORAGE = 1000
 
 class AddTripActivity : AppCompatActivity() {
     val PICK_IMAGE_FROM_ALBUM = 0
     var title: String? = null
-    var photoUri : List<String>? = null
+    var photoUri = arrayListOf<Uri>()
     var list = arrayListOf<addRegionData>()
 
     var storage: FirebaseStorage? = null
@@ -111,7 +108,7 @@ class AddTripActivity : AppCompatActivity() {
 
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
-                    list.add(addRegionData(name1, name2))
+                    list.add(addRegionData(name1, name2, photoUri))
                     mAdapter.notifyDataSetChanged() }
                 .setNeutralButton("취소", null)
                 .create()
@@ -162,19 +159,10 @@ class AddTripActivity : AppCompatActivity() {
 
             view.photoAddBtn.setOnClickListener {
 
-               // val photoPickerIntent = Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
-               // photoPickerIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-              //  photoPickerIntent.type = "image/*"
-               // startActivityForResult(Intent.createChooser(photoPickerIntent, "사진을 선택하세요."), PICK_IMAGE_FROM_ALBUM)
-
-
-                val intent = YPhotoPickerIntent(this)
-                intent.setMaxSelectCount(9)
-                intent.setShowCamera(false)
-                intent.setShowGif(false)
-                intent.setSelectCheckBox(false)
-                intent.setMaxGrideItemCount(3)
-                startActivityForResult(intent, PICK_IMAGE_FROM_ALBUM)
+                val photoPickerIntent = Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
+                photoPickerIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                photoPickerIntent.type = "image/*"
+                startActivityForResult(Intent.createChooser(photoPickerIntent, "사진을 선택하세요."), PICK_IMAGE_FROM_ALBUM)
             }
 
             builder.show()
@@ -189,19 +177,15 @@ class AddTripActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        var photos : List<String>? =null
-
         if(requestCode == PICK_IMAGE_FROM_ALBUM) {
             if(resultCode == Activity.RESULT_OK) {
-                if(data!=null) {
-                    photos = data.getStringArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS)
-                }
 
-                //resultOK = true
-                //val view = layoutInflater.inflate(R.layout.edit_region, null)
-                //view.imageView1.setImageResource(R.drawable.abc_ic_star_black_36dp)
+                photoUri.clear()
 
-                /*
+                var imgUri = arrayListOf<Uri>()
+
+                val view = layoutInflater.inflate(R.layout.edit_region, null)
+
                 val Uri = data!!.data
                 val clipData = data!!.clipData
 
@@ -210,24 +194,16 @@ class AddTripActivity : AppCompatActivity() {
                     for (i in 0..8) {
                         if (i < clipData.getItemCount()) {
                             val urione = clipData.getItemAt(i).uri
-                            when (i) {
-                               // 0 -> view.imageView1.setImageURI(urione)
-                                1 -> view.imageView2.setImageURI(urione)
-                                2 -> view.imageView3.setImageURI(urione)
-                                3 -> view.imageView4.setImageURI(urione)
-                                4 -> view.imageView5.setImageURI(urione)
-                                5 -> view.imageView6.setImageURI(urione)
-                                6 -> view.imageView7.setImageURI(urione)
-                                7 -> view.imageView8.setImageURI(urione)
-                                8 -> view.imageView9.setImageURI(urione)
-                            }
+                            imgUri.add(urione)
+
+
                         }
                     }
 
-                }*/
+                }
 
                 toast("이미지 선택 완료")
-                photoUri = photos
+                photoUri = imgUri
             }
         }
     }
@@ -243,36 +219,12 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.rating = ratingBar.numStars
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
+        contentDTO.explain = explainText.text.toString()
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
 
-        /*
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageFileName = "JPEG_" + timeStamp + "_.png"
-        val storageRef = storage?. reference?.child("images")?.child(imageFileName)
-        storageRef?.putFile(photoUri!!)?.addOnSuccessListener { taskSnapshot ->
-            Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
 
-            val uri = taskSnapshot.downloadUrl
-
-            val contentDTO = ContentDTO()
-
-            contentDTO.title = addTripName.text.toString()
-            contentDTO.startDate = date1text.text.toString()
-            contentDTO.endDate = date2text.text.toString()
-            contentDTO.regionlist = list
-            contentDTO.rating = ratingBar.numStars
-            contentDTO.explain = explainText.text.toString()
-            contentDTO.userId = auth?.currentUser?.email
-
-            firestore?.collection("trips")?.document()?.set(contentDTO)
-
-            setResult(Activity.RESULT_OK)
-            finish()
-        }
-
-*/
 
     }
 

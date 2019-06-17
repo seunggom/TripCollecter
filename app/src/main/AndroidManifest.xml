@@ -50,11 +50,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.yongbeam.y_photopicker.util.photopicker.PhotoPickerActivity"
-                  android:theme="@style/Theme.AppCompat.NoActionBar" />
 
-        <activity android:name="com.yongbeam.y_photopicker.util.photopicker.PhotoPagerActivity"
-                  android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
     </application>
 

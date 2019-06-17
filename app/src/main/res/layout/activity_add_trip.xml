@@ -140,16 +140,23 @@
                 android:layout_marginLeft="24dp" android:layout_marginStart="24dp" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="@+id/ratingBar" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/divider"/>
-        <EditText
+
+        <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:id="@+id/explainText" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/divider2"
-                app:layout_constraintBottom_toTopOf="@+id/addDataButton" android:inputType="text"
-                android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginRight="8dp" android:hint="설명을 입력하세요" android:layout_marginBottom="16dp"/>
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/addDataButton"
+                android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
+                app:counterEnabled="true" app:counterMaxLength="500"
+                app:layout_constraintTop_toTopOf="@+id/divider2">
+
+            <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/explainText"
+                    android:maxLength="500"
+                    android:hint="설명을 입력하세요"/>
+        </android.support.design.widget.TextInputLayout>
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

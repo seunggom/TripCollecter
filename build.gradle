@@ -34,7 +34,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral() // facebook-android-sdk 라이브러리를 gradle이 인식하도록 하기 위한 코드
-        maven {url 'https://jitpack.io'}
+
     }
 }
 
