@@ -60,8 +60,10 @@ class ListFragment : Fragment() {
         }
 
 
+
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            val view = LayoutInflater.from(context).inflate(R.layout.add_region, p0, false)
+            return CustomViewHolder(view)
         }
 
         override fun getItemCount(): Int {
@@ -70,6 +72,15 @@ class ListFragment : Fragment() {
 
         override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+
+            fun bind(list: addRegionData, context: Context) {
+
+
+            }
         }
 
     }

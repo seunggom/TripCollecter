@@ -31,8 +31,9 @@ class MapFragment : Fragment() {
     }
 
     fun image_glide() {
+        Glide.with(this).load(R.drawable.tmp).into(map_tmp)
         // Glide.with(this).load(R.drawable.map_).into(map_)
-
+        /*
         Glide.with(this).load(R.drawable.map_0_gwangju).into(map_gwangju)
 
         Glide.with(this).load(R.drawable.map_9_jeju1).into(map_jeju1)
@@ -107,10 +108,72 @@ class MapFragment : Fragment() {
         Glide.with(this).load(R.drawable.map_0_sejong).into(map_sejong)
         Glide.with(this).load(R.drawable.map_0_ulsan).into(map_ulsan)
 
+        Glide.with(this).load(R.drawable.map_1_ansan).into(map_ansan)
+        Glide.with(this).load(R.drawable.map_1_anseong).into(map_anseong)
+        Glide.with(this).load(R.drawable.map_1_anyang).into(map_anyang)
+        Glide.with(this).load(R.drawable.map_1_bc).into(map_bucheon)
+        Glide.with(this).load(R.drawable.map_1_dongdc).into(map_dongducheon)
+        Glide.with(this).load(R.drawable.map_1_ejb).into(map_euijeongbu)
+        Glide.with(this).load(R.drawable.map_1_euiwang).into(map_euiwang)
+        Glide.with(this).load(R.drawable.map_1_gc).into(map_gimcheon)
+        Glide.with(this).load(R.drawable.map_1_gimpo).into(map_gimpo)
+        Glide.with(this).load(R.drawable.map_1_gj).into(map_gwangju1)
+        Glide.with(this).load(R.drawable.map_1_gm).into(map_gumi)
+        Glide.with(this).load(R.drawable.map_1_goyang).into(map_goyang)
+        Glide.with(this).load(R.drawable.map_1_gp).into(map_gapyeong)
+        Glide.with(this).load(R.drawable.map_1_gunpo).into(map_gunpo)
+        Glide.with(this).load(R.drawable.map_1_guri).into(map_guri)
+        Glide.with(this).load(R.drawable.map_1_gwha).into(map_gangwha)
+        Glide.with(this).load(R.drawable.map_1_hanam).into(map_hanam)
+        Glide.with(this).load(R.drawable.map_1_hs).into(map_hwaseong)
+        Glide.with(this).load(R.drawable.map_1_ic).into(map_icheon)
+        Glide.with(this).load(R.drawable.map_1_nyju).into(map_namyangju)
+        Glide.with(this).load(R.drawable.map_1_os).into(map_osan)
+        Glide.with(this).load(R.drawable.map_1_paju).into(map_paju)
+        Glide.with(this).load(R.drawable.map_1_pocheon).into(map_pocheon)
+        Glide.with(this).load(R.drawable.map_1_pt).into(map_pyeongtaek)
+        Glide.with(this).load(R.drawable.map_1_sh).into(map_siheung)
+        Glide.with(this).load(R.drawable.map_1_snm).into(map_seongnam)
+        Glide.with(this).load(R.drawable.map_1_suwon).into(map_suwon)
+        Glide.with(this).load(R.drawable.map_1_yangju).into(map_yangju)
+        Glide.with(this).load(R.drawable.map_1_yeoju).into(map_yeoju)
+        Glide.with(this).load(R.drawable.map_1_yeoncheon).into(map_yeoncheon)
+        Glide.with(this).load(R.drawable.map_1_yi).into(map_yongin)
+        Glide.with(this).load(R.drawable.map_1_yp).into(map_yangpyeong)
+
+
+        Glide.with(this).load(R.drawable.map_21_boeun).into(map_cb_boeun)
+        Glide.with(this).load(R.drawable.map_21_cheongju).into(map_cb_cheongju)
+        Glide.with(this).load(R.drawable.map_21_chungju).into(map_cb_chungju)
+        Glide.with(this).load(R.drawable.map_21_danyang).into(map_cb_dy)
+        Glide.with(this).load(R.drawable.map_21_eumseong).into(map_cb_es)
+        Glide.with(this).load(R.drawable.map_21_goesan).into(map_cb_gs)
+        Glide.with(this).load(R.drawable.map_21_jecheon).into(map_cb_jecheon)
+        Glide.with(this).load(R.drawable.map_21_jeungpyeong).into(map_cb_jp)
+        Glide.with(this).load(R.drawable.map_21_jincheon).into(map_cb_jincheon)
+        Glide.with(this).load(R.drawable.map_21_okcheon).into(map_cb_ok)
+        Glide.with(this).load(R.drawable.map_21_yeongdong).into(map_cb_yd)
+
+
+        Glide.with(this).load(R.drawable.map_22_asan).into(map_cn_asan)
+        Glide.with(this).load(R.drawable.map_22_boryeong).into(map_cn_bor)
+        Glide.with(this).load(R.drawable.map_22_buyeo).into(map_cn_bu)
+        Glide.with(this).load(R.drawable.map_22_cheonan).into(map_cn_cheonan)
+        Glide.with(this).load(R.drawable.map_22_cheongyang).into(map_cn_cheongyang)
+        Glide.with(this).load(R.drawable.map_22_dangjin).into(map_cn_dj)
+        Glide.with(this).load(R.drawable.map_22_geumsan).into(map_cn_geum)
+        Glide.with(this).load(R.drawable.map_22_gongju).into(map_cn_gongju)
+        Glide.with(this).load(R.drawable.map_22_gyeryong).into(map_cn_gyeryong)
+        Glide.with(this).load(R.drawable.map_22_hongseong).into(map_cn_hongseong)
+        Glide.with(this).load(R.drawable.map_22_nonsan).into(map_cn_nonsan)
+        Glide.with(this).load(R.drawable.map_22_seocheon).into(map_cn_seocheon)
+        Glide.with(this).load(R.drawable.map_22_seosan).into(map_cn_seosan)
+        Glide.with(this).load(R.drawable.map_22_taean).into(map_cn_taean)
+        Glide.with(this).load(R.drawable.map_22_yesan).into(map_cn_yesan)
 
 
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
-
+*/
     }
 
     /*

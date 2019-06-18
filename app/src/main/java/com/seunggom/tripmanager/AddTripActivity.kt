@@ -42,6 +42,7 @@ class AddTripActivity : AppCompatActivity() {
     var title: String? = null
     var photoUri = arrayListOf<Uri>()
     var list = arrayListOf<addRegionData>()
+    var nameList = arrayListOf<RegionName>()
 
     var storage: FirebaseStorage? = null
     var firestore: FirebaseFirestore? = null
@@ -101,7 +102,6 @@ class AddTripActivity : AppCompatActivity() {
             var name1 : String? = null
             var si_do_pos : Int = 0
             var name2 : String? = null
-            var imageUrl: MutableSet<String>? = null
 
 
             val builder = AlertDialog.Builder(this)
@@ -109,6 +109,7 @@ class AddTripActivity : AppCompatActivity() {
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
                     list.add(addRegionData(name1, name2, photoUri))
+                    nameList.add(RegionName(name1, name2)) /////////// 임시로
                     mAdapter.notifyDataSetChanged() }
                 .setNeutralButton("취소", null)
                 .create()
@@ -169,7 +170,11 @@ class AddTripActivity : AppCompatActivity() {
         }
 
 
-        addDataButton.setOnClickListener { contentUpload() }
+        addDataButton.setOnClickListener {
+            contentUpload()
+            startActivity<MainActivity>()
+            finish()
+        }
     }
 
 
@@ -215,11 +220,11 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.title = addTripName.text.toString()
         contentDTO.startDate = date1text.text.toString()
         contentDTO.endDate = date2text.text.toString()
-        contentDTO.regionlist = list
+        contentDTO.regionName = nameList
+        //contentDTO.regionlist = list
         contentDTO.rating = ratingBar.numStars
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
-        contentDTO.explain = explainText.text.toString()
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
