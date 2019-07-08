@@ -50,11 +50,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        progressBar.visibility = View.VISIBLE
         if(savedInstanceState == null) { // 첫 화면은 MapFragment
             replaceFragment(MapFragment())
         }
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
+        //progress
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
     }
 

@@ -18,15 +18,13 @@ import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.util.*
 import com.seunggom.tripmanager.model.ContentDTO
-
-
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class ListFragment : Fragment() {
     var user: FirebaseUser? = null
     var firestore: FirebaseFirestore? = null
-    //var imagesSnapshot: ListenerRegistration? = null
-    //var okHttpClient: OkHttpClient? = null
+    var imagesSnapshot: ListenerRegistration? = null
     var mainView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,9 +33,8 @@ class ListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-       user = FirebaseAuth.getInstance().currentUser
-       firestore = FirebaseFirestore.getInstance()
-
+        user = FirebaseAuth.getInstance().currentUser
+        firestore = FirebaseFirestore.getInstance()
         mainView = inflater.inflate(R.layout.fragment_list, container, false)
 
         return mainView
@@ -45,19 +42,35 @@ class ListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        //mainView?.recyclerView?.layoutManager = LinearLayoutManager(activity)
-        //mainView?.recyclerView?.adapter = RecyclerViewAdapter()
 
+        mainView?.recyclerView?.layoutManager = LinearLayoutManager(activity)
+        mainView?.recyclerView?.adapter = RecyclerViewAdapter()
+        var mainActivity = activity as MainActivity
+        mainActivity.progressBar.visibility = View.INVISIBLE
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        imagesSnapshot?.remove()
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         val contentDTOs: ArrayList<ContentDTO>
+        val contentUidList: ArrayList<String>
 
         init {
             contentDTOs = ArrayList()
+            contentUidList = ArrayList()
+            var uid = FirebaseAuth.getInstance().currentUser?.uid
+            firestore?.collection("users")?.document(uid!!)?.get()?.addOnCompleteListener { task ->
+                if(task.isSuccessful) {
 
+                }
+            }
         }
+
 
 
 

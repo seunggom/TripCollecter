@@ -9,11 +9,21 @@
         android:scrollbarSize="5dp"
         tools:context=".AddTripActivity" android:id="@+id/scrollView4">
 
+
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/constraint">
 
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
         <TextView
                 android:text="여행 날짜"
                 android:layout_width="wrap_content"

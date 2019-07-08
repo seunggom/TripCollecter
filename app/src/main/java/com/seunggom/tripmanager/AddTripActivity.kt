@@ -41,8 +41,10 @@ class AddTripActivity : AppCompatActivity() {
     val PICK_IMAGE_FROM_ALBUM = 0
     var title: String? = null
     var photoUri = arrayListOf<Uri>()
+
+    var photoUriString = arrayListOf<String>()
     var list = arrayListOf<addRegionData>()
-    var nameList = arrayListOf<RegionName>()
+    var nameList = arrayListOf<RegionNameAndPhoto>()
 
     var storage: FirebaseStorage? = null
     var firestore: FirebaseFirestore? = null
@@ -108,8 +110,16 @@ class AddTripActivity : AppCompatActivity() {
 
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
-                    list.add(addRegionData(name1, name2, photoUri))
-                    nameList.add(RegionName(name1, name2)) /////////// 임시로
+                    var tmpUri = arrayListOf<Uri>()
+                    for (i in photoUri.iterator()) {
+                        tmpUri.add(i)
+                    }
+                    list.add(addRegionData(name1, name2, tmpUri))
+                    var tmpUriString = arrayListOf<String>()
+                    for (i in photoUriString.iterator()) {
+                        tmpUriString.add(i)
+                    }
+                    nameList.add(RegionNameAndPhoto(name1, name2, tmpUriString)) /////////// 임시로
                     mAdapter.notifyDataSetChanged() }
                 .setNeutralButton("취소", null)
                 .create()
@@ -185,9 +195,11 @@ class AddTripActivity : AppCompatActivity() {
         if(requestCode == PICK_IMAGE_FROM_ALBUM) {
             if(resultCode == Activity.RESULT_OK) {
 
-                photoUri.clear()
+                photoUri.removeAll(photoUri)
+                photoUriString.removeAll(photoUriString)
 
                 var imgUri = arrayListOf<Uri>()
+                var imgUriString = arrayListOf<String>()
 
                 val view = layoutInflater.inflate(R.layout.edit_region, null)
 
@@ -200,7 +212,7 @@ class AddTripActivity : AppCompatActivity() {
                         if (i < clipData.getItemCount()) {
                             val urione = clipData.getItemAt(i).uri
                             imgUri.add(urione)
-
+                            imgUriString.add(urione.toString())
 
                         }
                     }
@@ -209,26 +221,41 @@ class AddTripActivity : AppCompatActivity() {
 
                 toast("이미지 선택 완료")
                 photoUri = imgUri
+                photoUriString = imgUriString
             }
         }
     }
 
 
     fun contentUpload() {
+        progress_bar.visibility = View.VISIBLE
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA).format(Date())
+        for (i in list.iterator()) {
+            var imageNum = 1
+            for (j in i.imageUri!!.iterator()) {
+                val imageFileName = "JPEG_" + timeStamp + "_" + i.name1 + "_" + i.name2 + "_" + imageNum +"_.png"
+                imageNum = imageNum + 1
+                val storageRef = storage?.reference?.child("images")?.child(imageFileName)
+                storageRef?.putFile(j)
+            }
+        }
+        //val imageFileName =
+        //val uri = taskSnapshot.downloadUrl
         val contentDTO = ContentDTO()
 
         contentDTO.title = addTripName.text.toString()
         contentDTO.startDate = date1text.text.toString()
         contentDTO.endDate = date2text.text.toString()
         contentDTO.regionName = nameList
-        //contentDTO.regionlist = list
+        //contentDTO.regionList = list
         contentDTO.rating = ratingBar.numStars
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
+        contentDTO.timestamp = System.currentTimeMillis()
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
-
+        progress_bar.visibility = View.GONE
 
 
     }
