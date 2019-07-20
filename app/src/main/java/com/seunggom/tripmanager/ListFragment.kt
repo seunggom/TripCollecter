@@ -2,7 +2,6 @@ package com.seunggom.tripmanager
 
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -19,13 +18,16 @@ import kotlinx.android.synthetic.main.fragment_list.view.*
 import java.util.*
 import com.seunggom.tripmanager.model.ContentDTO
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.list_trip.view.*
 
 
 class ListFragment : Fragment() {
-    var user: FirebaseUser? = null
+    private var auth: FirebaseAuth? = null
     var firestore: FirebaseFirestore? = null
     var imagesSnapshot: ListenerRegistration? = null
     var mainView: View? = null
+    var okHttpClient: OkHttpClient? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class ListFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        user = FirebaseAuth.getInstance().currentUser
+        auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
         mainView = inflater.inflate(R.layout.fragment_list, container, false)
 
@@ -43,10 +45,10 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        mainView?.recyclerView?.layoutManager = LinearLayoutManager(activity)
-        mainView?.recyclerView?.adapter = RecyclerViewAdapter()
-        var mainActivity = activity as MainActivity
-        mainActivity.progressBar.visibility = View.INVISIBLE
+        mainView?.ListRecyclerView?.layoutManager = LinearLayoutManager(activity)
+        mainView?.ListRecyclerView?.adapter = RecyclerViewAdapter()
+        //var mainActivity = activity as MainActivity
+        //mainActivity.progressBar.visibility = View.INVISIBLE
 
     }
 
@@ -63,11 +65,21 @@ class ListFragment : Fragment() {
         init {
             contentDTOs = ArrayList()
             contentUidList = ArrayList()
-            var uid = FirebaseAuth.getInstance().currentUser?.uid
-            firestore?.collection("users")?.document(uid!!)?.get()?.addOnCompleteListener { task ->
-                if(task.isSuccessful) {
 
+            val userEmail = auth!!.currentUser?.email
+            firestore?.collection("trips")?.orderBy("timestamp")!!.get().addOnSuccessListener { documents ->
+                contentDTOs.clear()
+                contentUidList.clear()
+
+                for (document in documents) {
+                    if (document["userId"] == userEmail) {
+                        var item = document.toObject(ContentDTO::class.java)!!
+                        contentDTOs.add(item)
+                    }
                 }
+                var mainActivity = activity as MainActivity
+                mainActivity.progressBar.visibility = View.INVISIBLE
+                notifyDataSetChanged()
             }
         }
 
@@ -75,25 +87,25 @@ class ListFragment : Fragment() {
 
 
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-            val view = LayoutInflater.from(context).inflate(R.layout.add_region, p0, false)
+            val view = LayoutInflater.from(context).inflate(R.layout.list_trip, p0, false)
             return CustomViewHolder(view)
         }
 
         override fun getItemCount(): Int {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            return contentDTOs.size
         }
 
-        override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            val viewHolder = (holder as CustomViewHolder).itemView
+            viewHolder.tripTitle.text = contentDTOs[position].title.toString()
+
+
+
+
         }
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-
-            fun bind(list: addRegionData, context: Context) {
-
-
-            }
         }
 
     }

@@ -24,14 +24,17 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_map -> {
+                progressBar.visibility = View.VISIBLE
                 replaceFragment(MapFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_list -> {
+                progressBar.visibility = View.VISIBLE
                 replaceFragment(ListFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search -> {
+                progressBar.visibility = View.VISIBLE
                 replaceFragment(SearchFragment())
                 return@OnNavigationItemSelectedListener true
             }

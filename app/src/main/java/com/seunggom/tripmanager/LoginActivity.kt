@@ -124,6 +124,6 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
 
         // 자동 로그인 설정
-        //moveMainPage(auth?.currentUser)
+        moveMainPage(auth?.currentUser)
     }
 }
