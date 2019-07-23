@@ -14,12 +14,13 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            >
         <activity android:name=".AddTripActivity">
         </activity>
         <activity
                 android:name=".MainActivity"
-                android:label="TripCollecter">
+                android:label="TripCollector">
         </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>

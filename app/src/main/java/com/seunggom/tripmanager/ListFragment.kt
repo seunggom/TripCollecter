@@ -1,24 +1,25 @@
 package com.seunggom.tripmanager
 
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.GestureDetectorCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import com.facebook.FacebookSdk.getApplicationContext
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.squareup.okhttp.OkHttpClient
-import kotlinx.android.synthetic.main.fragment_list.view.*
-import java.util.*
 import com.seunggom.tripmanager.model.ContentDTO
+import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.list_trip.view.*
+import org.jetbrains.anko.toast
+import java.util.*
+
+
 
 
 class ListFragment : Fragment() {
@@ -29,6 +30,8 @@ class ListFragment : Fragment() {
     var okHttpClient: OkHttpClient? = null
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +40,15 @@ class ListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
+        var gestureDetector : GestureDetectorCompat
         mainView = inflater.inflate(R.layout.fragment_list, container, false)
+
+        gestureDetector = GestureDetectorCompat(getApplicationContext(), object : GestureDetector.SimpleOnGestureListener() {
+            override fun onSingleTapUp(e: MotionEvent): Boolean {
+                return true
+            }
+        })
+
 
         return mainView
     }
@@ -51,6 +62,8 @@ class ListFragment : Fragment() {
         //mainActivity.progressBar.visibility = View.INVISIBLE
 
     }
+
+
 
     override fun onStop() {
         super.onStop()
@@ -98,17 +111,30 @@ class ListFragment : Fragment() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             val viewHolder = (holder as CustomViewHolder).itemView
             viewHolder.tripTitle.text = contentDTOs[position].title.toString()
+            viewHolder.startDate.text = contentDTOs[position].startDate.toString()
+            viewHolder.endDate.text = contentDTOs[position].endDate.toString()
+            var regionNames : String = ""
+            var iter = 1
+            for (i in contentDTOs[position].regionName!!.iterator()) {
+                regionNames = regionNames + i.name1 + " " + i.name2
+                if (iter != contentDTOs[position].regionName!!.size) regionNames = regionNames + " / "
+                iter++
+            }
+            viewHolder.region.text = regionNames
 
-
-
+            viewHolder.button2.setOnClickListener {
+                context!!.toast(contentDTOs[position].title.toString())
+            }
 
         }
+
 
         inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         }
 
     }
+
 
 
     companion object {
