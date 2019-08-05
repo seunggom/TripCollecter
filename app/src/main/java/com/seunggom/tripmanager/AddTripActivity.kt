@@ -248,7 +248,7 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.endDate = date2text.text.toString()
         contentDTO.regionName = nameList
         //contentDTO.regionList = list
-        contentDTO.rating = ratingBar.numStars
+        contentDTO.rating = ratingBar.rating
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
         contentDTO.timestamp = System.currentTimeMillis()

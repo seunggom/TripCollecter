@@ -1,6 +1,7 @@
 package com.seunggom.tripmanager
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.GestureDetectorCompat
@@ -16,8 +17,8 @@ import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.list_trip.view.*
-import org.jetbrains.anko.toast
 import java.util.*
+
 
 
 
@@ -123,7 +124,10 @@ class ListFragment : Fragment() {
             viewHolder.region.text = regionNames
 
             viewHolder.button2.setOnClickListener {
-                context!!.toast(contentDTOs[position].title.toString())
+
+                var intent = Intent(activity, DetailTripActivity::class.java)
+                intent.putExtra("trip_info", contentDTOs[position])
+                startActivity(intent)
             }
 
         }
