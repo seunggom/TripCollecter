@@ -13,5 +13,4 @@ class ContentDTO : Serializable {
     var rating: Float = 0f
     var explain: String? = null
     var timestamp: Long? = null
-    var isOpen: Boolean = true
 }

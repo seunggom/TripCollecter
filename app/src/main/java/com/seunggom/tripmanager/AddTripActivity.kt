@@ -1,29 +1,39 @@
 package com.seunggom.tripmanager
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Intent
-import android.net.Uri
+import android.content.Context
+import android.content.DialogInterface
+import android.database.Cursor
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_add_trip.*
+import java.util.*
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.Toast
+import kotlinx.android.synthetic.main.edit_region.*
+import kotlinx.android.synthetic.main.edit_region.view.*
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.support.v4.app.ActivityCompat
+import android.widget.*
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.seunggom.tripmanager.model.ContentDTO
-import kotlinx.android.synthetic.main.activity_add_trip.*
-import kotlinx.android.synthetic.main.edit_region.view.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.*
 import java.text.SimpleDateFormat
-import java.util.*
+import android.content.ClipData
 
 
 
@@ -242,8 +252,6 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
         contentDTO.timestamp = System.currentTimeMillis()
-        if (radioGroup.checkedRadioButtonId == R.id.radioButton1) contentDTO.isOpen = true
-        else if(radioGroup.checkedRadioButtonId == R.id.radioButton2) contentDTO.isOpen = false
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
