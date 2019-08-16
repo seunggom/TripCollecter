@@ -1,13 +1,13 @@
 package com.seunggom.tripmanager
 
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-
-
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
@@ -28,10 +28,65 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         image_glide()
+
     }
 
+
     fun image_glide() {
-        Glide.with(this).load(R.drawable.tmp).into(map_tmp)
+        Glide.with(this).load(R.drawable.map__outline).into(map_outline)
+
+        /*
+        특별시/광역시 -> a
+        서울 1  인천2  대전3  세종4 광주5 울산6 부산7 대구8
+        */
+        Glide.with(this).load(R.drawable.map_0_seoul).into(map_a1)
+        Glide.with(this).load(R.drawable.map_0_incheon).into(map_a2)
+        Glide.with(this).load(R.drawable.map_0_daejeon).into(map_a3)
+        Glide.with(this).load(R.drawable.map_0_sejong).into(map_a4)
+        Glide.with(this).load(R.drawable.map_0_gwangju).into(map_a5)
+        Glide.with(this).load(R.drawable.map_0_ulsan).into(map_a6)
+        Glide.with(this).load(R.drawable.map_0_busan).into(map_a7)
+        Glide.with(this).load(R.drawable.map_0_daegu).into(map_a8)
+
+        /*
+        경기도 b
+        가평01 고양02 과천03 광명04 광주05 구리06 군포07 김포08 남양주09 동두천10 부천11 성남12 수원13 시흥14 안산15 안성16
+        안양17 양주18 양평19 여주20 연천21 오산22 용인23 의왕24 의정부25 이천26 파주27 평택28 포천29 하남30 화성31
+
+        */
+        Glide.with(this).load(R.drawable.map_1_ansan).into(map_b15)
+        Glide.with(this).load(R.drawable.map_1_anseong).into(map_b16)
+        Glide.with(this).load(R.drawable.map_1_anyang).into(map_b17)
+        Glide.with(this).load(R.drawable.map_1_bc).into(map_b11)
+        Glide.with(this).load(R.drawable.map_1_dongdc).into(map_b10)
+        Glide.with(this).load(R.drawable.map_1_ejb).into(map_b25)
+        Glide.with(this).load(R.drawable.map_1_euiwang).into(map_b24)
+        Glide.with(this).load(R.drawable.map_1_gc).into(map_b03)
+        Glide.with(this).load(R.drawable.map_1_gimpo).into(map_b08)
+        Glide.with(this).load(R.drawable.map_1_gj).into(map_b05)
+        Glide.with(this).load(R.drawable.map_1_gm).into(map_b04)
+        Glide.with(this).load(R.drawable.map_1_goyang).into(map_b02)
+        Glide.with(this).load(R.drawable.map_1_gp).into(map_b01)
+        Glide.with(this).load(R.drawable.map_1_gunpo).into(map_b07)
+        Glide.with(this).load(R.drawable.map_1_guri).into(map_b06)
+        Glide.with(this).load(R.drawable.map_1_hanam).into(map_b30)
+        Glide.with(this).load(R.drawable.map_1_hs).into(map_b31)
+        Glide.with(this).load(R.drawable.map_1_ic).into(map_b26)
+        Glide.with(this).load(R.drawable.map_1_nyju).into(map_b09)
+        Glide.with(this).load(R.drawable.map_1_os).into(map_b22)
+        Glide.with(this).load(R.drawable.map_1_paju).into(map_b27)
+        Glide.with(this).load(R.drawable.map_1_pocheon).into(map_b29)
+        Glide.with(this).load(R.drawable.map_1_pt).into(map_b28)
+        Glide.with(this).load(R.drawable.map_1_sh).into(map_b14)
+        Glide.with(this).load(R.drawable.map_1_snm).into(map_b12)
+        Glide.with(this).load(R.drawable.map_1_suwon).into(map_b13)
+        Glide.with(this).load(R.drawable.map_1_yangju).into(map_b18)
+        Glide.with(this).load(R.drawable.map_1_yeoju).into(map_b20)
+        Glide.with(this).load(R.drawable.map_1_yeoncheon).into(map_b21)
+        Glide.with(this).load(R.drawable.map_1_yi).into(map_b23)
+        Glide.with(this).load(R.drawable.map_1_yp).into(map_b19)
+
+        //Glide.with(this).load(R.drawable.tmp).into(map_tmp)
         // Glide.with(this).load(R.drawable.map_).into(map_)
         /*
         Glide.with(this).load(R.drawable.map_0_gwangju).into(map_gwangju)
@@ -102,11 +157,7 @@ class MapFragment : Fragment() {
         Glide.with(this).load(R.drawable.map_gb_yeongyang).into(map_gb_yeongyang)
         Glide.with(this).load(R.drawable.map_gb_yuiseong).into(map_gb_yuiseong)
 */
-        Glide.with(this).load(R.drawable.map_0_busan).into(map_busan)
-        Glide.with(this).load(R.drawable.map_0_daegu).into(map_daegu)
-        Glide.with(this).load(R.drawable.map_0_daejeon).into(map_daejeon)
-        Glide.with(this).load(R.drawable.map_0_sejong).into(map_sejong)
-        Glide.with(this).load(R.drawable.map_0_ulsan).into(map_ulsan)
+
 
         Glide.with(this).load(R.drawable.map_1_ansan).into(map_ansan)
         Glide.with(this).load(R.drawable.map_1_anseong).into(map_anseong)
@@ -174,7 +225,10 @@ class MapFragment : Fragment() {
 
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
 */
+        var mainActivity = activity as MainActivity
+        mainActivity.progressBar.visibility = View.INVISIBLE
     }
+
 
     /*
         // TODO: Rename method, update argument and hook method into UI event

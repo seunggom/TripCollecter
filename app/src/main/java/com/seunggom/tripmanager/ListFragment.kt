@@ -4,11 +4,11 @@ package com.seunggom.tripmanager
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.view.GestureDetectorCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.*
-import com.facebook.FacebookSdk.getApplicationContext
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -41,14 +41,7 @@ class ListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
-        var gestureDetector : GestureDetectorCompat
         mainView = inflater.inflate(R.layout.fragment_list, container, false)
-
-        gestureDetector = GestureDetectorCompat(getApplicationContext(), object : GestureDetector.SimpleOnGestureListener() {
-            override fun onSingleTapUp(e: MotionEvent): Boolean {
-                return true
-            }
-        })
 
 
         return mainView
@@ -96,8 +89,6 @@ class ListFragment : Fragment() {
                 notifyDataSetChanged()
             }
         }
-
-
 
 
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
