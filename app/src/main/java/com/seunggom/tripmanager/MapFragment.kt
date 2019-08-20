@@ -1,6 +1,7 @@
 package com.seunggom.tripmanager
 
 
+import android.graphics.*
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,18 @@ class MapFragment : Fragment() {
 
 
     fun image_glide() {
+
+        var images = getResourceBitmap()
+        var image_num = images.size
+
+        var bitmap = makeBitmap(images[0], images[1])
+        for(i in 2..image_num-1) {
+            bitmap = makeBitmap(bitmap, images[i])
+        }
+        Glide.with(this).load(bitmap).into(map)
+        Glide.with(this).load(R.drawable.map__outline).into(map_outline)
+
+        /*
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
 
         /*
@@ -224,45 +237,56 @@ class MapFragment : Fragment() {
 
 
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
-*/
+*/*/
         var mainActivity = activity as MainActivity
         mainActivity.progressBar.visibility = View.INVISIBLE
+
+    }
+//https://hoyytada.github.io/android/2017/12/10/dev-android-01.html
+
+    fun getResourceBitmap() : ArrayList<Bitmap> {
+        var returnArray = arrayListOf<Bitmap>()
+
+        // 서울 1  인천2  대전3  세종4 광주5 울산6 부산7 대구8
+        //var mDrawable = context!!.resources(R.drawable.map_0_seoul)
+        //mDrawable.setColorFilter(Color.parseColor("#4CAF50"), PorterDuff.Mode.SRC_IN)
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_seoul))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_incheon))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_daejeon))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_sejong))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_gwangju))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_ulsan))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_busan))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_daegu))
+        //가평01 고양02 과천03 광명04 광주05 구리06 군포07 김포08 남양주09 동두천10 부천11 성남12 수원13 시흥14 안산15 안성16
+        //안양17 양주18 양평19 여주20 연천21 오산22 용인23 의왕24 의정부25 이천26 파주27 평택28 포천29 하남30 화성31
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_ansan))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_goyang))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_gc))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_gm))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_gj))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_guri))
+
+        //returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_0_daegu))
+
+
+        return returnArray
+    }
+
+    fun makeBitmap(original : Bitmap, target : Bitmap) : Bitmap {
+        var resultBitmap = Bitmap.createBitmap(original.width, original.height, original.config)
+
+        var color_paint = Paint()
+        color_paint.setColorFilter(PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY))
+
+        var canvas = Canvas(resultBitmap)
+        canvas.drawBitmap(original, Matrix(), null)
+        canvas.drawBitmap(target, Matrix(), color_paint)
+
+        return resultBitmap
     }
 
 
-    /*
-        // TODO: Rename method, update argument and hook method into UI event
-        fun onButtonPressed(uri: Uri) {
-
-        }
-
-        override fun onAttach(context: Context) {
-            super.onAttach(context)
-
-        }
-
-        override fun onDetach() {
-            super.onDetach()
-           // listener = null
-        }
-
-        /**
-         * This interface must be implemented by activities that contain this
-         * fragment to allow an interaction in this fragment to be communicated
-         * to the activity and potentially other fragments contained in that
-         * activity.
-         *
-         *
-         * See the Android Training lesson [Communicating with Other Fragments]
-         * (http://developer.android.com/training/basics/fragments/communicating.html)
-         * for more information.
-         */
-        interface OnFragmentInteractionListener {
-            // TODO: Update argument type and name
-            fun onFragmentInteraction(uri: Uri)
-        }
-
-        */
     companion object {
 
         @JvmStatic

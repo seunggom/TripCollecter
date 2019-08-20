@@ -246,6 +246,15 @@ class AddTripActivity : AppCompatActivity() {
         else if(radioGroup.checkedRadioButtonId == R.id.radioButton2) contentDTO.isOpen = false
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
+        for(i in nameList.iterator()) {
+            var stringArray1 = resources.getStringArray(R.array.si_do)
+            for (j in stringArray1.iterator()) {
+                if (j == i.name1) {
+                    /////////////////////
+                }
+            }
+        }
+
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
         progress_bar.visibility = View.GONE
 
