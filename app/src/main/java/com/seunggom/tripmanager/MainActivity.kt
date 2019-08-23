@@ -1,25 +1,22 @@
 package com.seunggom.tripmanager
 
+import android.Manifest
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import android.Manifest
-import android.app.Activity
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import android.support.v4.app.Fragment
 import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity() {
+
+
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -53,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //toast(getString(R.string.signin_complete))
         progressBar.visibility = View.VISIBLE
         if(savedInstanceState == null) { // 첫 화면은 MapFragment
             replaceFragment(MapFragment())

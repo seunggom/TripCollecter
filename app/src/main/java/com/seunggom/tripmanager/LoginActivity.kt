@@ -13,8 +13,6 @@ import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
-import com.seunggom.tripmanager.model.RegionDTO
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -25,14 +23,12 @@ class LoginActivity : AppCompatActivity() {
 
     var auth: FirebaseAuth? = null // firebase authentication 관리 클래스
     var callbackManager: CallbackManager? = null // facebook 로그인 처리 결과 관리 클래스
-    var firestore: FirebaseFirestore? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance() //firebase login 통합 관리하는 object
-
 
         email_login_button.setOnClickListener { emailLogin() }
         facebook_login_button.setOnClickListener { facebookLogin() }
@@ -77,12 +73,9 @@ class LoginActivity : AppCompatActivity() {
     // 이메일 회원 가입 및 로그인 메소드
     fun createAndLoginEmail() {
         auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())?.addOnCompleteListener {
-            task -> progress_bar.visibility = View.GONE
+                task -> progress_bar.visibility = View.GONE
             if (task.isSuccessful) {
                 // 아이디 생성이 성공했을 경우
-                firestore = FirebaseFirestore.getInstance()
-                var regionDTO = RegionDTO()
-                firestore?.collection("regions")?.document(email_edittext.text.toString())?.set(regionDTO)
                 toast(getString(R.string.signup_complete))
                 moveMainPage(auth?.currentUser)
             }
@@ -105,13 +98,12 @@ class LoginActivity : AppCompatActivity() {
             createAndLoginEmail()
         }
     }
-    
+
     fun signinEmail() {
         auth?.signInWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())?.addOnCompleteListener {
-            task ->  progress_bar.visibility = View.GONE
+                task ->  progress_bar.visibility = View.GONE
             if (task.isSuccessful) {
                 // 로그인 성공 및 다음 페이지 호출
-                toast("로그인 성공")
                 moveMainPage(auth?.currentUser)
             }
             else {

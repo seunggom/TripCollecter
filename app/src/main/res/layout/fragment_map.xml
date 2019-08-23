@@ -22,6 +22,13 @@
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/map_outline" android:scaleType="fitCenter"/>
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar2" android:layout_marginEnd="39dp"
+                android:layout_alignEnd="@+id/map_outline" android:layout_alignParentBottom="true"
+                android:layout_marginBottom="98dp" android:visibility="visible"/>
     </RelativeLayout>
 
 

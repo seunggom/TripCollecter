@@ -8,20 +8,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.seunggom.tripmanager.model.RegionDTO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
 class MapFragment : Fragment() {
 
+    var firestore: FirebaseFirestore? = null
+    private var auth: FirebaseAuth? = null
+    var regionDTO : RegionDTO? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        firestore = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+        val docRef = firestore!!.collection("regions").document(auth?.currentUser!!.email!!)
+        docRef.get().addOnSuccessListener {document ->
+            if(document.exists())
+                regionDTO = document.toObject(RegionDTO::class.java)
+            else {
+                var new_regionDTO = RegionDTO()
+                firestore?.collection("regions")?.document(auth?.currentUser!!.email!!)?.set(new_regionDTO)
+                regionDTO = new_regionDTO
+            }
+        }
 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
 
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
@@ -31,12 +53,16 @@ class MapFragment : Fragment() {
 
         image_glide()
 
+        //progressBar2.visibility = View.GONE
+        var mainActivity = activity as MainActivity
+        mainActivity.progressBar.visibility = View.INVISIBLE
+
     }
 
+    //https://forums.developer.amazon.com/questions/12734/illegalargumentexception-on-lockcanvas.html
 
     fun image_glide() {
-        var mainActivity = activity as MainActivity
-        mainActivity.progressBar.visibility = View.VISIBLE
+        //mainActivity.progressBar.visibility = View.VISIBLE
 
         var images = getResourceBitmap()
         var image_num = images.size
@@ -48,7 +74,7 @@ class MapFragment : Fragment() {
         Glide.with(this).load(bitmap).into(map)
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
 
-        mainActivity.progressBar.visibility = View.GONE
+        //mainActivity.progressBar.visibility = View.GONE
 
     }
 //https://hoyytada.github.io/android/2017/12/10/dev-android-01.html
@@ -101,7 +127,7 @@ class MapFragment : Fragment() {
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_hanam))
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_hs))
 
-        // 강원도
+        /*// 강원도
         // 강릉 고성 동해 삼척 속초 양구 양양 영월 원주 인제 정선 철원 춘천 태백 평창 홍천 화천 횡성
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_2_gr))
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_2_gs))
@@ -240,7 +266,7 @@ class MapFragment : Fragment() {
 
         // 서귀포 제주
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju1))
-        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju2))
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju2))*/
 
         return returnArray
     }
