@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.seunggom.tripmanager.model.ContentDTO
+import com.seunggom.tripmanager.model.RegionDTO
 import kotlinx.android.synthetic.main.activity_add_trip.*
 import kotlinx.android.synthetic.main.edit_region.view.*
 import org.jetbrains.anko.startActivity
@@ -171,6 +172,7 @@ class AddTripActivity : AppCompatActivity() {
 
 
         addDataButton.setOnClickListener {
+
             contentUpload()
             startActivity<MainActivity>()
             finish()
@@ -246,14 +248,52 @@ class AddTripActivity : AppCompatActivity() {
         else if(radioGroup.checkedRadioButtonId == R.id.radioButton2) contentDTO.isOpen = false
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
+
+        var regionDTO = RegionDTO()
+        firestore?.collection("regions")!!.document(contentDTO.userId!!).get().addOnSuccessListener { data ->
+            regionDTO = data.toObject(RegionDTO::class.java)
+        }
         for(i in nameList.iterator()) {
             var stringArray1 = resources.getStringArray(R.array.si_do)
-            for (j in stringArray1.iterator()) {
-                if (j == i.name1) {
-                    /////////////////////
+            var stringArray2 : Array<String>? = null
+            for(j in 0..stringArray1.size-1) {
+                if(stringArray1[j] == i.name1) {
+                    when (j) {
+                        1 -> stringArray2 = resources.getStringArray(R.array.si_do_1)
+                        2 -> stringArray2 = resources.getStringArray(R.array.si_do_2)
+                        3 -> stringArray2 = resources.getStringArray(R.array.si_do_3)
+                        4 -> stringArray2 = resources.getStringArray(R.array.si_do_4)
+                        5 -> stringArray2 = resources.getStringArray(R.array.si_do_5)
+                        6 -> stringArray2 = resources.getStringArray(R.array.si_do_6)
+                        7 -> stringArray2 = resources.getStringArray(R.array.si_do_7)
+                        8 -> stringArray2 = resources.getStringArray(R.array.si_do_8)
+                        9 -> stringArray2 = resources.getStringArray(R.array.si_do_9)
+                        10 -> stringArray2 = resources.getStringArray(R.array.si_do_10)
+                    }
+
+                    for(k in 0..stringArray2!!.size-1) {
+                        if (stringArray2[k] == i.name2) {
+                            when (j) {
+                                1 -> regionDTO.si_do_1[k]++
+                                2 -> regionDTO.si_do_2[k]++
+                                3 -> regionDTO.si_do_3[k]++
+                                4 -> regionDTO.si_do_4[k]++
+                                5 -> regionDTO.si_do_5[k]++
+                                6 -> regionDTO.si_do_6[k]++
+                                7 -> regionDTO.si_do_7[k]++
+                                8 -> regionDTO.si_do_8[k]++
+                                9 -> regionDTO.si_do_9[k]++
+                                10 -> regionDTO.si_do_10[k]++
+                            }
+                        }
+                    }
+                    break
                 }
+
             }
+
         }
+        firestore?.collection("regions")!!.document(contentDTO.userId!!).set(regionDTO)
 
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
         progress_bar.visibility = View.GONE

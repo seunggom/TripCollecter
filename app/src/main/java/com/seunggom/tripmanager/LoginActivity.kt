@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance() //firebase login 통합 관리하는 object
-        firestore = FirebaseFirestore.getInstance()
+
 
         email_login_button.setOnClickListener { emailLogin() }
         facebook_login_button.setOnClickListener { facebookLogin() }
@@ -80,6 +80,7 @@ class LoginActivity : AppCompatActivity() {
             task -> progress_bar.visibility = View.GONE
             if (task.isSuccessful) {
                 // 아이디 생성이 성공했을 경우
+                firestore = FirebaseFirestore.getInstance()
                 var regionDTO = RegionDTO()
                 firestore?.collection("regions")?.document(email_edittext.text.toString())?.set(regionDTO)
                 toast(getString(R.string.signup_complete))
@@ -110,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
             task ->  progress_bar.visibility = View.GONE
             if (task.isSuccessful) {
                 // 로그인 성공 및 다음 페이지 호출
+                toast("로그인 성공")
                 moveMainPage(auth?.currentUser)
             }
             else {
