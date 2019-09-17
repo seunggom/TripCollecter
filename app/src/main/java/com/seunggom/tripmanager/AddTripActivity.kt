@@ -42,6 +42,8 @@ class AddTripActivity : AppCompatActivity() {
     private var auth: FirebaseAuth? = null
 
     var resultOK : Boolean = false
+    var regionDTO = RegionDTO()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +52,12 @@ class AddTripActivity : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
+
+        val doc = firestore!!.collection("regions").document(auth?.currentUser!!.email!!)
+        doc.get().addOnSuccessListener { document ->
+            if(document.exists())
+                regionDTO = document.toObject(RegionDTO::class.java)
+        }
 
         val mAdapter = AddRegionViewAdapter(this, list)
         mRecyclerView.adapter = mAdapter
@@ -111,6 +119,8 @@ class AddTripActivity : AppCompatActivity() {
                         tmpUriString.add(i)
                     }
                     nameList.add(RegionNameAndPhoto(name1, name2, tmpUriString)) /////////// 임시로
+                    photoUri.removeAll(photoUri)
+                    photoUriString.removeAll(photoUriString)
                     mAdapter.notifyDataSetChanged() }
                 .setNeutralButton("취소", null)
                 .create()
@@ -221,13 +231,14 @@ class AddTripActivity : AppCompatActivity() {
 
     fun contentUpload() {
         progress_bar.visibility = View.VISIBLE
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA).format(Date())
+        val cntTime = System.currentTimeMillis()
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA).format(cntTime)
         for (i in list.iterator()) {
             var imageNum = 1
             for (j in i.imageUri!!.iterator()) {
-                val imageFileName = "JPEG_" + timeStamp + "_" + i.name1 + "_" + i.name2 + "_" + imageNum +"_.png"
+                val imageFileName = timeStamp + "_" + i.name2 + "_" + imageNum
                 imageNum = imageNum + 1
-                val storageRef = storage?.reference?.child("images")?.child(imageFileName)
+                val storageRef = storage?.reference?.child(auth!!.currentUser!!.email!!)?.child(imageFileName)
                 storageRef?.putFile(j)
             }
         }
@@ -243,16 +254,14 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.rating = ratingBar.rating
         contentDTO.explain = explainText.text.toString()
         contentDTO.userId = auth?.currentUser?.email
-        contentDTO.timestamp = System.currentTimeMillis()
+        contentDTO.timestamp = cntTime
         if (radioGroup.checkedRadioButtonId == R.id.radioButton1) contentDTO.isOpen = true
         else if(radioGroup.checkedRadioButtonId == R.id.radioButton2) contentDTO.isOpen = false
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
 
-        var regionDTO = RegionDTO()
-        firestore?.collection("regions")!!.document(contentDTO.userId!!).get().addOnSuccessListener { data ->
-            regionDTO = data.toObject(RegionDTO::class.java)
-        }
+
+
         for(i in nameList.iterator()) {
             var stringArray1 = resources.getStringArray(R.array.si_do)
             var stringArray2 : Array<String>? = null
@@ -293,7 +302,7 @@ class AddTripActivity : AppCompatActivity() {
             }
 
         }
-        firestore?.collection("regions")!!.document(contentDTO.userId!!).set(regionDTO)
+        firestore?.collection("regions")!!.document(auth?.currentUser!!.email!!).set(regionDTO)
 
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
         progress_bar.visibility = View.GONE

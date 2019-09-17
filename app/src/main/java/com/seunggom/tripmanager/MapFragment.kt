@@ -59,6 +59,7 @@ class MapFragment : Fragment() {
 
     }
 
+
     //https://forums.developer.amazon.com/questions/12734/illegalargumentexception-on-lockcanvas.html
 
     fun image_glide() {
@@ -71,7 +72,7 @@ class MapFragment : Fragment() {
         for(i in 2..image_num-1) {
             bitmap = makeBitmap(bitmap, images[i])
         }
-        Glide.with(this).load(bitmap).into(map)
+        Glide.with(this).load(bitmap).into(map_1)
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
 
         //mainActivity.progressBar.visibility = View.GONE
@@ -127,7 +128,7 @@ class MapFragment : Fragment() {
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_hanam))
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_1_hs))
 
-        /*// 강원도
+        // 강원도
         // 강릉 고성 동해 삼척 속초 양구 양양 영월 원주 인제 정선 철원 춘천 태백 평창 홍천 화천 횡성
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_2_gr))
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_2_gs))
@@ -266,7 +267,7 @@ class MapFragment : Fragment() {
 
         // 서귀포 제주
         returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju1))
-        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju2))*/
+        returnArray.add(BitmapFactory.decodeResource(context!!.resources, R.drawable.map_9_jeju2))
 
         return returnArray
     }

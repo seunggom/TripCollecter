@@ -109,7 +109,7 @@ class ListFragment : Fragment() {
             var iter = 1
             for (i in contentDTOs[position].regionName!!.iterator()) {
                 regionNames = regionNames + i.name1 + " " + i.name2
-                if (iter != contentDTOs[position].regionName!!.size) regionNames = regionNames + " / "
+                if (iter != contentDTOs[position].regionName!!.size) regionNames = regionNames + " + "
                 iter++
             }
             viewHolder.region.text = regionNames

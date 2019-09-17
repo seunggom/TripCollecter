@@ -12,6 +12,7 @@ import com.seunggom.tripmanager.model.ContentDTO
 import kotlinx.android.synthetic.main.activity_detail_trip.*
 import kotlinx.android.synthetic.main.detail_trip_images.view.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailTripActivity : AppCompatActivity() {
 
@@ -29,7 +30,7 @@ class DetailTripActivity : AppCompatActivity() {
         info_rating.rating = content.rating.toFloat()
         info_user.text = content.userId
         info_explain.text = content.explain
-        var timeFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        var timeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         info_uploadDate.text = timeFormat.format(content.timestamp)
 
         info_recycler.layoutManager = LinearLayoutManager(this)
@@ -48,17 +49,18 @@ class DetailTripActivity : AppCompatActivity() {
             viewHolder.name1.text = region[p1].name1
             viewHolder.name2.text = region[p1].name2
 
-            var timeFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
+            var timeFormat = SimpleDateFormat("yyyyMMdd_HHmmss").format(time)  //13시인데 그냥 01시라고 뜬다 해결 필요!
+
 
 
             val count = region[p1].photo!!.size
             var imageNum = 1
             for (j in 0..count-1) {
-                val imageFileName = "JPEG_" + timeFormat.format(time) + "_" + region[p1].name1 + "_" + region[p1].name2 + "_" + imageNum +"_.png"
+                val imageFileName = "JPEG_" + timeFormat + "_" + region[p1].name1 + "_" + region[p1].name2 + "_" + imageNum +"_.png"
                 imageNum = imageNum + 1
                 val storageRef = storage?.reference?.child("images")!!.child(imageFileName)
 
-                storageRef!!.downloadUrl.addOnCompleteListener {task ->
+                /*storageRef!!.downloadUrl.addOnCompleteListener {task ->
                     var realUri = task.result
                     when(j) {
                         0 -> {
@@ -99,7 +101,7 @@ class DetailTripActivity : AppCompatActivity() {
                         }
                     }
 
-                }
+                }*/
 
             }
         }

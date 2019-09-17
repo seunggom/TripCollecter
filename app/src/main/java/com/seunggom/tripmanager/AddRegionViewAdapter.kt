@@ -1,12 +1,10 @@
 package com.seunggom.tripmanager
 
+import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.View
-import android.content.Context
-import android.widget.Button
-import android.widget.ImageView
+import android.view.ViewGroup
 import android.widget.TextView
 import kotlinx.android.synthetic.main.add_region.view.*
 
@@ -38,6 +36,8 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
             var count = list.imageUri!!.size
             for (i in 0..count-1) {
                 when (i) {
+
+                    // 바로 이미지뷰에 띄우지 말고 glide를 통해서 띄우도록 수정!
                     0 -> {
                         itemView.imageView1.setImageURI(list.imageUri!!.elementAt(i))
                         itemView.imageView1.visibility = View.VISIBLE
