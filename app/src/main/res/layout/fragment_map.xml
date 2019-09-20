@@ -15,60 +15,7 @@
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/map_1" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_2" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_3" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_4" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_5" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_6" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_7" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_8" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_9" android:scaleType="fitCenter"/>
-        <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/map_10" android:scaleType="fitCenter"/>
+
         <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
