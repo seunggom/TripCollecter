@@ -14,9 +14,13 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
 
+    var image_loaded : Boolean
 
+    init {
+        image_loaded = false
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         //progress
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,4 +83,9 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    fun changeSetting() {
+        image_loaded = true
+    }
+
 }

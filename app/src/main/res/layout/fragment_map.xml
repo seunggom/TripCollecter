@@ -11,24 +11,91 @@
 
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
+                android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/map_1" android:scaleType="fitCenter"/>
-
         <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" app:srcCompat="@android:drawable/alert_light_frame"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_2" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_3" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_4" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_5" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_6" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_7" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_8" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_9" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/map_10" android:scaleType="fitCenter"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/map_outline" android:scaleType="fitCenter"/>
-        <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="116dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar2" android:layout_marginEnd="39dp"
-                android:layout_alignEnd="@+id/map_outline" android:layout_alignParentBottom="true"
-                android:layout_marginBottom="98dp" android:visibility="visible"/>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="119dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/loading_progressBar"
+                    android:indeterminate="true" android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="104dp" app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="이미지 로딩 중~"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loading_text"
+                    app:layout_constraintTop_toBottomOf="@+id/loading_progressBar"
+                    app:layout_constraintEnd_toEndOf="@+id/loading_progressBar"
+                    app:layout_constraintStart_toStartOf="@+id/loading_progressBar"/>
+        </android.support.constraint.ConstraintLayout>
     </RelativeLayout>
 
 

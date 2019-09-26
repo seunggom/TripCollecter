@@ -23,19 +23,24 @@
                 android:name=".DetailTripActivity"
                 android:parentActivityName=".MainActivity"
                 android:label="여행 기록 상세보기"
+                android:screenOrientation="portrait"
+
         >
         </activity>
         <activity
                 android:name=".AddTripActivity"
                 android:parentActivityName=".MainActivity"
                 android:label="여행 기록 추가하기"
+                android:screenOrientation="portrait"
         >
         </activity>
         <activity
                 android:name=".MainActivity"
-                android:label="TripCollector">
+                android:label="TripCollector"
+                android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+                  android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
