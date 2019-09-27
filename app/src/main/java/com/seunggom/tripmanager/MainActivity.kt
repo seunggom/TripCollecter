@@ -1,6 +1,7 @@
 package com.seunggom.tripmanager
 
 import android.Manifest
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.ActivityCompat
@@ -13,19 +14,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
+var image_loaded : Boolean = false
+var mapimages = arrayListOf<Bitmap>()
 
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity(), MapFragment.loadCompleteListener  {
 
-    var image_loaded : Boolean
 
-    init {
-        image_loaded = false
-    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_map -> {
                 progressBar.visibility = View.VISIBLE
+                var a = image_loaded
                 replaceFragment(MapFragment())
                 return@OnNavigationItemSelectedListener true
             }
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity()  {
         return super.onOptionsItemSelected(item)
     }
 
-    fun changeSetting() {
+    override fun changeSetting() {
         image_loaded = true
     }
 

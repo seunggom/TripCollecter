@@ -13,7 +13,7 @@
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" android:visibility="visible">
             <TextView
                     android:text="지역 이름"
                     android:layout_width="wrap_content"
@@ -25,63 +25,177 @@
                     android:layout_height="wrap_content" android:id="@+id/name2text" android:textSize="24sp"
                     android:textAllCaps="false" android:layout_marginLeft="5dp" android:layout_marginTop="5dp"/>
         </LinearLayout>
-        <TableLayout
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_margin="3dp">
+                android:layout_height="match_parent" android:id="@+id/imageLayout1" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView1" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
-                        android:id="@+id/imageView1" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
-                        android:id="@+id/imageView2" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
-                        android:id="@+id/imageView3" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-            </TableRow>
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView4" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView5" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView6" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-            </TableRow>
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent">
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView7" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView8" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp" tools:srcCompat="@tools:sample/backgrounds/scenic"
-                        android:id="@+id/imageView9" android:scaleType="centerCrop" android:visibility="gone"
-                        android:layout_margin="2dp"/>
-            </TableRow>
-            <TableRow android:layout_width="match_parent" android:layout_height="match_parent"/>
-        </TableLayout>
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText1"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout2" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView2" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText2"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout3" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView3" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText3"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout4" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView4" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText4"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout5" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView5" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText5"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout6" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView6" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText6"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout7" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView7" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText7"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout8" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView8" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText8"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/imageLayout9" android:visibility="gone">
+            <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp" tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/imageView9" android:scaleType="centerCrop" android:visibility="visible"
+                    android:layout_margin="2dp"/>
+            <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="사진 설명" android:id="@+id/imageText9"/>
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
         <View
                 android:id="@+id/divider5"
                 android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.add_region.view.*
 
 class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionData>) : RecyclerView.Adapter<AddRegionViewAdapter.CustomViewHolder>() {
@@ -39,40 +40,49 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
 
                     // 바로 이미지뷰에 띄우지 말고 glide를 통해서 띄우도록 수정!
                     0 -> {
-                        itemView.imageView1.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView1.visibility = View.VISIBLE
+                        //itemView.imageView1.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView1)
+                        itemView.imageLayout1.visibility = View.VISIBLE
                     }
                     1 -> {
-                        itemView.imageView2.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView2.visibility = View.VISIBLE
+                        //itemView.imageView2.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView2)
+                        itemView.imageLayout2.visibility = View.VISIBLE
                     }
                     2 -> {
-                        itemView.imageView3.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView3.visibility = View.VISIBLE
+                        //itemView.imageView3.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView3)
+                        itemView.imageLayout3.visibility = View.VISIBLE
                     }
                     3 -> {
-                        itemView.imageView4.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView4.visibility = View.VISIBLE
+                        //itemView.imageView4.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView4)
+                        itemView.imageLayout4.visibility = View.VISIBLE
                     }
                     4 -> {
-                        itemView.imageView5.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView5.visibility = View.VISIBLE
+                        //itemView.imageView5.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView5)
+                        itemView.imageLayout5.visibility = View.VISIBLE
                     }
                     5 -> {
-                        itemView.imageView6.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView6.visibility = View.VISIBLE
+                        //itemView.imageView6.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView6)
+                        itemView.imageLayout6.visibility = View.VISIBLE
                     }
                     6 -> {
-                        itemView.imageView7.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView7.visibility = View.VISIBLE
+                        //itemView.imageView7.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView7)
+                        itemView.imageLayout7.visibility = View.VISIBLE
                     }
                     7 -> {
-                        itemView.imageView8.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView8.visibility = View.VISIBLE
+                        //itemView.imageView8.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView8)
+                        itemView.imageLayout8.visibility = View.VISIBLE
                     }
                     8 -> {
-                        itemView.imageView9.setImageURI(list.imageUri!!.elementAt(i))
-                        itemView.imageView9.visibility = View.VISIBLE
+                        //itemView.imageView9.setImageURI(list.imageUri!!.elementAt(i))
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView9)
+                        itemView.imageLayout9.visibility = View.VISIBLE
                     }
                 }
 

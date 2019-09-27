@@ -6,4 +6,9 @@
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGrayTrans">#00AFA7A7</color>
+
+    <color name="map_1">#CAFFA5</color>
+    <color name="map_2to5">#8AF15D</color>
+    <color name="map_6to10">#55C520</color>
+    <color name="map_11">#3A9C14</color>
 </resources>

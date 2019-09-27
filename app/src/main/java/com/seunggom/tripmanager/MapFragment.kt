@@ -26,7 +26,7 @@ class MapFragment() : Fragment() {
     var firestore: FirebaseFirestore? = null
     private var auth: FirebaseAuth? = null
     var regionDTO : RegionDTO? = null
-    var images = arrayListOf<Bitmap>()
+    var task = Array(10) {BitmapWorkerTask()}
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,17 +34,6 @@ class MapFragment() : Fragment() {
 
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
-
-        val docRef = firestore!!.collection("regions").document(auth?.currentUser!!.email!!)
-        docRef.get().addOnSuccessListener {document ->
-            if(document.exists())
-                regionDTO = document.toObject(RegionDTO::class.java)
-            else {
-                var new_regionDTO = RegionDTO()
-                firestore?.collection("regions")?.document(auth?.currentUser!!.email!!)?.set(new_regionDTO)
-                regionDTO = new_regionDTO
-            }
-        }
 
     }
 
@@ -57,35 +46,48 @@ class MapFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val a = MainActivity().image_loaded
+        firestore = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
 
-        //image_glide()
+        firestore!!.collection("regions").document(auth?.currentUser!!.email!!).get().addOnCompleteListener { document ->
+            if(document.isSuccessful) {
+                regionDTO = document.result.toObject(RegionDTO::class.java)
+                if (image_loaded == false) {
+                    loadBitmap(getResourceID_1().toTypedArray(), map_1, 0, regionDTO!!.si_do_1)
+                    loadBitmap(getResourceID_2().toTypedArray(), map_2, 1, regionDTO!!.si_do_2)
+                    loadBitmap(getResourceID_3().toTypedArray(), map_3, 2, regionDTO!!.si_do_3)
+                    loadBitmap(getResourceID_4().toTypedArray(), map_4, 3, regionDTO!!.si_do_4)
+                    loadBitmap(getResourceID_5().toTypedArray(), map_5, 4, regionDTO!!.si_do_5)
+                    loadBitmap(getResourceID_6().toTypedArray(), map_6, 5, regionDTO!!.si_do_6)
+                    loadBitmap(getResourceID_7().toTypedArray(), map_7, 6, regionDTO!!.si_do_7)
+                    loadBitmap(getResourceID_8().toTypedArray(), map_8, 7, regionDTO!!.si_do_8)
+                    loadBitmap(getResourceID_9().toTypedArray(), map_9, 8, regionDTO!!.si_do_9)
+                    loadBitmap(getResourceID_10().toTypedArray(), map_10, 9, regionDTO!!.si_do_10)
+                }
+            }
+            else {
+                var new_regionDTO = RegionDTO()
+                firestore?.collection("regions")?.document(auth?.currentUser!!.email!!)?.set(new_regionDTO)
+                regionDTO = new_regionDTO
+            }
+        }
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
-        if(MainActivity().image_loaded == false) {
-            loadBitmap(getResourceID_1().toTypedArray(), map_1)
-            loadBitmap(getResourceID_2().toTypedArray(), map_2)
-            loadBitmap(getResourceID_3().toTypedArray(), map_3)
-            loadBitmap(getResourceID_4().toTypedArray(), map_4)
-            loadBitmap(getResourceID_5().toTypedArray(), map_5)
-            loadBitmap(getResourceID_6().toTypedArray(), map_6)
-            loadBitmap(getResourceID_7().toTypedArray(), map_7)
-            loadBitmap(getResourceID_8().toTypedArray(), map_8)
-            loadBitmap(getResourceID_9().toTypedArray(), map_9)
-            loadBitmap(getResourceID_10().toTypedArray(), map_10)
-        }
-        else {
-            /*Glide.with(this).load(images[0]).into(map_1)
-            Glide.with(this).load(images[1]).into(map_2)
-            Glide.with(this).load(images[2]).into(map_3)
-            Glide.with(this).load(images[3]).into(map_4)
-            Glide.with(this).load(images[4]).into(map_5)
-            Glide.with(this).load(images[5]).into(map_6)
-            Glide.with(this).load(images[6]).into(map_7)
-            Glide.with(this).load(images[7]).into(map_8)
-            Glide.with(this).load(images[8]).into(map_9)
-            Glide.with(this).load(images[9]).into(map_10)
-*/
-        }
+            if(image_loaded == true) {
+                Glide.with(this).load(mapimages[0]).into(map_1)
+                Glide.with(this).load(mapimages[1]).into(map_2)
+                Glide.with(this).load(mapimages[2]).into(map_3)
+                Glide.with(this).load(mapimages[3]).into(map_4)
+                Glide.with(this).load(mapimages[4]).into(map_5)
+                Glide.with(this).load(mapimages[5]).into(map_6)
+                Glide.with(this).load(mapimages[6]).into(map_7)
+                Glide.with(this).load(mapimages[7]).into(map_8)
+                Glide.with(this).load(mapimages[8]).into(map_9)
+                Glide.with(this).load(mapimages[9]).into(map_10)
+                loading_progressBar.visibility = View.GONE
+                loading_text.visibility = View.GONE
+
+
+            }
         //progressBar2.visibility = View.GONE
         var mainActivity = activity as MainActivity
         mainActivity.progressBar.visibility = View.INVISIBLE
@@ -98,7 +100,7 @@ class MapFragment() : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        //task.cancel(true)
+        for(i in 0..9) task[i].cancel(true)
 
         // 참고 사이트 : https://woovictory.github.io/2019/08/03/AsyncTask/
     }
@@ -107,30 +109,13 @@ class MapFragment() : Fragment() {
     //https://forums.developer.amazon.com/questions/12734/illegalargumentexception-on-lockcanvas.html
 
 
-    fun loadBitmap(resId : Array<Int>, imageView: ImageView) {
-        var task : BitmapWorkerTask =  BitmapWorkerTask()
-        task.BitmapWorkerTask(imageView)
+    fun loadBitmap(resId : Array<Int>, imageView: ImageView, index: Int, region: ArrayList<Int>) {
+//        task[index] = BitmapWorkerTask()
+        task[index].BitmapWorkerTask(imageView, region)
 
-        task.executeOnExecutor(THREAD_POOL_EXECUTOR, *resId)
+        task[index].executeOnExecutor(THREAD_POOL_EXECUTOR, *resId)
     }
 
-
-    fun image_glide() {
-        //mainActivity.progressBar.visibility = View.VISIBLE
-
-        /*var images = getResourceBitmap()
-        var image_num = images.size
-
-        var bitmap = makeBitmap(images[0], images[1])
-        for(i in 2..image_num-1) {
-            bitmap = makeBitmap(bitmap, images[i])
-        }
-        Glide.with(this).load(bitmap).into(map_1)*/
-        Glide.with(this).load(R.drawable.map__outline).into(map_outline)
-
-        //mainActivity.progressBar.visibility = View.GONE
-
-    }
 //https://hoyytada.github.io/android/2017/12/10/dev-android-01.html
 
     fun getResourceID_1() : List<Int> {
@@ -391,15 +376,22 @@ class MapFragment() : Fragment() {
             }
     }
 
+    interface loadCompleteListener {
+        fun changeSetting()
+    }
+
+    val listener:loadCompleteListener = MainActivity()
 
     inner class BitmapWorkerTask : AsyncTask<Int, Void, Bitmap>() {
 
         lateinit var imageViewReference: WeakReference<ImageView>
-
-        fun BitmapWorkerTask(imageView: ImageView) {
+        lateinit var region : ArrayList<Int>
+        fun BitmapWorkerTask(imageView: ImageView, region_info : ArrayList<Int>) {
             // WeakReference 를 사용하는 이유는 image 처럼 메모리를 많이 차지하는 객체에 대한 가비지컬렉터를 보장하기 위해서입니다.
 
             imageViewReference = WeakReference(imageView)
+            region = region_info
+
             //출처: https://ismydream.tistory.com/130 [창조적고찰]
         }
 
@@ -421,14 +413,19 @@ class MapFragment() : Fragment() {
             var bitmap : Bitmap? = null
             var image1 = BitmapFactory.decodeResource(context!!.resources, params[0]!!)
             var image2 = BitmapFactory.decodeResource(context!!.resources, params[1]!!)
-            bitmap = makeBitmap(image1, image2)
+            var color_paint1 = Paint()
+            var color_paint2 = Paint()
+
+            bitmap = makeBitmap(image1, image2, chooseColor(region[0]), chooseColor(region[1]))
             if(!image1.isRecycled) image1.recycle()
             if(!image2.isRecycled) image2.recycle()
+
+            var null_paint = Paint()
 
             for(i in 2..image_num-1) {
                 var newimage : Bitmap? = null
                 newimage = BitmapFactory.decodeResource(context!!.resources, params[i]!!)
-                bitmap = makeBitmap(bitmap!!, newimage)
+                bitmap = makeBitmap(bitmap!!, newimage, null_paint, chooseColor(region[i]))
 
                 if(!newimage.isRecycled) newimage.recycle()
             }
@@ -438,15 +435,11 @@ class MapFragment() : Fragment() {
         }
 
 
-
-        fun makeBitmap(original : Bitmap, target : Bitmap) : Bitmap {
+        fun makeBitmap(original : Bitmap, target : Bitmap, original_paint : Paint, target_paint : Paint) : Bitmap {
             var surfaceView: SurfaceView? = null
 
 
             var resultBitmap = Bitmap.createBitmap(original.width, original.height, original.config)
-
-            var color_paint = Paint()
-            color_paint.setColorFilter(PorterDuffColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY))
 
             //var holder : SurfaceHolder = surfaceView!!.holder!!
             var canvas = Canvas(resultBitmap)
@@ -454,8 +447,8 @@ class MapFragment() : Fragment() {
             canvas.setBitmap(resultBitmap)
 
 
-            canvas.drawBitmap(original, Matrix(), color_paint)
-            canvas.drawBitmap(target, Matrix(), color_paint)
+            canvas.drawBitmap(original, Matrix(), original_paint)
+            canvas.drawBitmap(target, Matrix(), target_paint)
 
             //holder.unlockCanvasAndPost(canvas)
 
@@ -470,15 +463,27 @@ class MapFragment() : Fragment() {
                 var imageView = imageViewReference.get()
                 if (imageView != null) {
                     Glide.with(this@MapFragment).load(result).into(imageView)
-                    images.add(result)
-                    if(images.size == 10) {
+                    mapimages.add(result)
+                    if(mapimages.size == 10) {
                         loading_progressBar.visibility = View.GONE
                         loading_text.visibility = View.GONE
-                        MainActivity().changeSetting()
+                        listener.changeSetting()
                     }
                 }
             }
 
+        }
+
+        fun chooseColor(a : Int) : Paint {
+            var p = Paint()
+            if(a == 0) return p
+            else if(a == 1) {
+                p.colorFilter = PorterDuffColorFilter(resources.getColor(R.color.map_1), PorterDuff.Mode.MULTIPLY)
+            }
+            else if(a>1 && a<6) p.colorFilter = PorterDuffColorFilter(resources.getColor(R.color.map_2to5), PorterDuff.Mode.MULTIPLY)
+            else if( a>=6 && a<10) p.colorFilter = PorterDuffColorFilter(resources.getColor(R.color.map_6to10), PorterDuff.Mode.MULTIPLY)
+            else p.colorFilter = PorterDuffColorFilter(resources.getColor(R.color.map_11), PorterDuff.Mode.MULTIPLY)
+            return p
         }
 
     }

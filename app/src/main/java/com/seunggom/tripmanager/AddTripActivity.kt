@@ -306,6 +306,7 @@ class AddTripActivity : AppCompatActivity() {
 
         Toast.makeText(this, "업로드 성공", Toast.LENGTH_SHORT).show()
         progress_bar.visibility = View.GONE
+        image_loaded = false
 
 
     }

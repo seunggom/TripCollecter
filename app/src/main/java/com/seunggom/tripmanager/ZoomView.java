@@ -44,7 +44,7 @@ public class ZoomView extends FrameLayout {
     private int miniMapColor = Color.DKGRAY;
     private int miniMapHeight = -1;
     private String miniMapCaption;
-    private float miniMapCaptionSize = 10.0f;
+    private float miniMapCaptionSize = 5.0f;
     private int miniMapCaptionColor = Color.WHITE;
 
     // touching variables
@@ -404,7 +404,7 @@ public class ZoomView extends FrameLayout {
         // draw minimap
         if (showMinimap) {
             if (miniMapHeight < 0) {
-                miniMapHeight = getHeight() / 4;
+                miniMapHeight = getHeight() / 6;
             }
 
             canvas.translate(10.0f, 10.0f);
