@@ -16,7 +16,7 @@ import java.util.*
 
 class DetailTripActivity : AppCompatActivity() {
 
-    var storage: FirebaseStorage? = FirebaseStorage.getInstance("gs://tripcollecter-6499f.appspot.com")
+    val storage = FirebaseStorage.getInstance("gs://tripcollecter-6499f.appspot.com")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +59,7 @@ class DetailTripActivity : AppCompatActivity() {
                 val imageFileName = "JPEG_" + timeFormat + "_" + region[p1].name1 + "_" + region[p1].name2 + "_" + imageNum +"_.png"
                 imageNum = imageNum + 1
                 val storageRef = storage?.reference?.child("images")!!.child(imageFileName)
-
+// https://firebase.google.com/docs/storage/android/download-files?authuser=0
                 /*storageRef!!.downloadUrl.addOnCompleteListener {task ->
                     var realUri = task.result
                     when(j) {

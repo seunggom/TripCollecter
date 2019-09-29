@@ -72,6 +72,7 @@ class MapFragment() : Fragment() {
             }
         }
         Glide.with(this).load(R.drawable.map__outline).into(map_outline)
+        Glide.with(this).load(R.drawable.map_name).into(map_name)
             if(image_loaded == true) {
                 Glide.with(this).load(mapimages[0]).into(map_1)
                 Glide.with(this).load(mapimages[1]).into(map_2)

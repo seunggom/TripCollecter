@@ -233,6 +233,8 @@ class AddTripActivity : AppCompatActivity() {
         progress_bar.visibility = View.VISIBLE
         val cntTime = System.currentTimeMillis()
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.KOREA).format(cntTime)
+
+        var tmpsaveUri = ArrayList<Uri>()
         for (i in list.iterator()) {
             var imageNum = 1
             for (j in i.imageUri!!.iterator()) {
@@ -242,8 +244,7 @@ class AddTripActivity : AppCompatActivity() {
                 storageRef?.putFile(j)
             }
         }
-        //val imageFileName =
-        //val uri = taskSnapshot.downloadUrl
+
         val contentDTO = ContentDTO()
 
         contentDTO.title = addTripName.text.toString()
@@ -257,6 +258,7 @@ class AddTripActivity : AppCompatActivity() {
         contentDTO.timestamp = cntTime
         if (radioGroup.checkedRadioButtonId == R.id.radioButton1) contentDTO.isOpen = true
         else if(radioGroup.checkedRadioButtonId == R.id.radioButton2) contentDTO.isOpen = false
+
 
         firestore?.collection("trips")?.document()?.set(contentDTO)
 

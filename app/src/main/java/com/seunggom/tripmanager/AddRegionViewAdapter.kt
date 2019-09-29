@@ -41,47 +41,47 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
                     // 바로 이미지뷰에 띄우지 말고 glide를 통해서 띄우도록 수정!
                     0 -> {
                         //itemView.imageView1.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView1)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView1)
                         itemView.imageLayout1.visibility = View.VISIBLE
                     }
                     1 -> {
                         //itemView.imageView2.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView2)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView2)
                         itemView.imageLayout2.visibility = View.VISIBLE
                     }
                     2 -> {
                         //itemView.imageView3.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView3)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView3)
                         itemView.imageLayout3.visibility = View.VISIBLE
                     }
                     3 -> {
                         //itemView.imageView4.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView4)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView4)
                         itemView.imageLayout4.visibility = View.VISIBLE
                     }
                     4 -> {
                         //itemView.imageView5.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView5)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView5)
                         itemView.imageLayout5.visibility = View.VISIBLE
                     }
                     5 -> {
                         //itemView.imageView6.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView6)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView6)
                         itemView.imageLayout6.visibility = View.VISIBLE
                     }
                     6 -> {
                         //itemView.imageView7.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView7)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView7)
                         itemView.imageLayout7.visibility = View.VISIBLE
                     }
                     7 -> {
                         //itemView.imageView8.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView8)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView8)
                         itemView.imageLayout8.visibility = View.VISIBLE
                     }
                     8 -> {
                         //itemView.imageView9.setImageURI(list.imageUri!!.elementAt(i))
-                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.imageView9)
+                        Glide.with(itemView).load(list.imageUri!!.elementAt(i)).into(itemView.ad_imageView9)
                         itemView.imageLayout9.visibility = View.VISIBLE
                     }
                 }
@@ -90,3 +90,5 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
         }
     }
 }
+// http://blog.naver.com/PostView.nhn?blogId=artisan_ryu&logNo=220797549440&parentCategoryNo=&categoryNo=56&viewDate=&isShowPopularPosts=false&from=postView
+// http://www.masterqna.com/android/67562/recyclerview%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-edittext%EB%A5%BC-gettext%ED%95%A0%EB%A0%A4%EA%B3%A0%ED%95%98%EB%8A%94%EB%8D%B0%EC%9A%94
