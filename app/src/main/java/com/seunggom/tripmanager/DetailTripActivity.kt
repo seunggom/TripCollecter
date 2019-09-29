@@ -46,8 +46,8 @@ class DetailTripActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
             val viewHolder = (p0 as CustomViewHolder).itemView
-            viewHolder.name1.text = region[p1].name1
-            viewHolder.name2.text = region[p1].name2
+            viewHolder.name1_dtl.text = region[p1].name1
+            viewHolder.name2_dtl.text = region[p1].name2
 
             var timeFormat = SimpleDateFormat("yyyyMMdd_HHmmss").format(time)  //13시인데 그냥 01시라고 뜬다 해결 필요!
 
