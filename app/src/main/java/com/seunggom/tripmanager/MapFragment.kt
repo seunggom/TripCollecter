@@ -396,6 +396,12 @@ class MapFragment() : Fragment() {
             //출처: https://ismydream.tistory.com/130 [창조적고찰]
         }
 
+        override fun onPreExecute() {
+            super.onPreExecute()
+            loading_progressBar.visibility = View.VISIBLE
+            loading_text.visibility = View.VISIBLE
+        }
+
         override fun doInBackground(vararg params: Int?): Bitmap {
          /*
             var images = getResourceBitmap()
