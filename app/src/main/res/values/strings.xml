@@ -18,6 +18,7 @@
     <string name="title_map">지도</string>
     <string name="title_list">여행 리스트</string>
     <string name="title_search">여행 검색</string>
+    <string name="title_setting">설정</string>
     <string name="title_activity_main">MainActivity</string>
 
     <!-- TODO: Remove or change this placeholder text -->

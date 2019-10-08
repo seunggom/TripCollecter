@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity(), MapFragment.loadCompleteListener  {
                 replaceFragment(SearchFragment())
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.navigation_setting -> {
+                progressBar.visibility = View.VISIBLE
+                replaceFragment(SettingFragment())
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }

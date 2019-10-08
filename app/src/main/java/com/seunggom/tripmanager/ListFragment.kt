@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.storage.FirebaseStorage
 import com.seunggom.tripmanager.model.ContentDTO
 import com.seunggom.tripmanager.model.RegionDTO
@@ -29,7 +28,6 @@ import java.util.*
 class ListFragment : Fragment() {
     private var auth: FirebaseAuth? = null
     var firestore: FirebaseFirestore? = null
-    var imagesSnapshot: ListenerRegistration? = null
     var mainView: View? = null
     var okHttpClient: OkHttpClient? = null
     val storage = FirebaseStorage.getInstance("gs://tripcollecter-6499f.appspot.com")
@@ -53,7 +51,7 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        mainView?.ListRecyclerView?.layoutManager = LinearLayoutManager(activity)
+        mainView?.ListRecyclerView?.layoutManager =  LinearLayoutManager(activity)
         mainView?.ListRecyclerView?.adapter = RecyclerViewAdapter()
         //var mainActivity = activity as MainActivity
         //mainActivity.progressBar.visibility = View.INVISIBLE
@@ -64,22 +62,18 @@ class ListFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        imagesSnapshot?.remove()
     }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         val contentDTOs: ArrayList<ContentDTO>
-        val contentUidList: ArrayList<String>
 
         init {
             contentDTOs = ArrayList()
-            contentUidList = ArrayList()
 
             val userEmail = auth!!.currentUser?.email
             firestore?.collection("trips")?.orderBy("timestamp")!!.get().addOnSuccessListener { documents ->
                 contentDTOs.clear()
-                contentUidList.clear()
 
                 for (document in documents) {
                     if (document["userId"] == userEmail) {
