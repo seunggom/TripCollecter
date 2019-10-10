@@ -65,7 +65,7 @@ class SearchFragment : Fragment() {
     }
 
 
-    inner class SearchAdapter(searchText : String) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+    inner class SearchAdapter(searchText : String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val contentDTOs: ArrayList<ContentDTO> = ArrayList()
 
         init {
@@ -104,12 +104,13 @@ class SearchFragment : Fragment() {
                 search_result_info.text = count.toString() + "개의 기록이 검색되었습니다."
                 search_result_info.visibility = View.VISIBLE
             }
-            return count
+            return contentDTOs.size
         }
 
-        override fun onBindViewHolder(p0: SearchViewHolder, p1: Int) {
-            p0.itemView.srText_title.text = contentDTOs[p1].title.toString()
-            p0.itemView.srText_uploadDate.text = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA).format(contentDTOs[p1].timestamp) + " uploaded"
+        override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
+            val viewHolder = (p0 as SearchViewHolder).itemView
+            viewHolder.srText_title.text = contentDTOs[p1].title.toString()
+            viewHolder.srText_uploadDate.text = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA).format(contentDTOs[p1].timestamp) + " uploaded"
             var regionNames : String = ""
             var iter = 1
             for (i in contentDTOs[p1].regionName!!.iterator()) {
@@ -117,10 +118,10 @@ class SearchFragment : Fragment() {
                 if (iter != contentDTOs[p1].regionName!!.size) regionNames = regionNames + " + "
                 iter++
             }
-            p0.itemView.srText_regions.text = regionNames
-            p0.itemView.sr_ratingBar.rating = contentDTOs[p1].rating
+            viewHolder.srText_regions.text = regionNames
+            viewHolder.sr_ratingBar.rating = contentDTOs[p1].rating
 
-            p0.itemView.setOnClickListener {
+            viewHolder.setOnClickListener {
                 var intent = Intent(activity, DetailTripActivity::class.java)
                 intent.putExtra("trip_info", contentDTOs[p1])
                 startActivity(intent)

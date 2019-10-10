@@ -81,54 +81,63 @@ class DetailTripActivity : AppCompatActivity() {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView1_dtl)
                             viewHolder.imageView1_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView1_dtl
+                            viewHolder.textView1_dtl.text = region[p1].explains!![j]
                             viewHolder.textView1_dtl.visibility = View.VISIBLE
                         }
                         1 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView2_dtl)
                             viewHolder.imageView2_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView2_dtl
+                            viewHolder.textView2_dtl.text = region[p1].explains!![j]
                             viewHolder.textView2_dtl.visibility = View.VISIBLE
                         }
                         2 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView3_dtl)
                             viewHolder.imageView3_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView3_dtl
+                            viewHolder.textView3_dtl.text = region[p1].explains!![j]
                             viewHolder.textView3_dtl.visibility = View.VISIBLE
                         }
                         3 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView4_dtl)
                             viewHolder.imageView4_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView4_dtl
+                            viewHolder.textView4_dtl.text = region[p1].explains!![j]
                             viewHolder.textView4_dtl.visibility = View.VISIBLE
                         }
                         4 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView5_dtl)
                             viewHolder.imageView5_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView5_dtl
+                            viewHolder.textView5_dtl.text = region[p1].explains!![j]
                             viewHolder.textView5_dtl.visibility = View.VISIBLE
                         }
                         5 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView6_dtl)
                             viewHolder.imageView6_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView6_dtl
+                            viewHolder.textView6_dtl.text = region[p1].explains!![j]
                             viewHolder.textView6_dtl.visibility = View.VISIBLE
                         }
                         6 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView7_dtl)
                             viewHolder.imageView7_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView7_dtl
+                            viewHolder.textView7_dtl.text = region[p1].explains!![j]
                             viewHolder.textView7_dtl.visibility = View.VISIBLE
                         }
                         7 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView8_dtl)
                             viewHolder.imageView8_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView8_dtl
+                            viewHolder.textView8_dtl.text = region[p1].explains!![j]
                             viewHolder.textView8_dtl.visibility = View.VISIBLE
                         }
                         8 -> {
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView9_dtl)
                             viewHolder.imageView9_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView9_dtl
+                            viewHolder.textView9_dtl.text = region[p1].explains!![j]
                             viewHolder.textView9_dtl.visibility = View.VISIBLE
                         }
                     }
@@ -186,19 +195,12 @@ class DetailTripActivity : AppCompatActivity() {
             }
 
 
-
-
-
-
-
         }
 
         override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
             val view = LayoutInflater.from(p0.context).inflate(R.layout.detail_trip_images, p0, false)
             return CustomViewHolder(view)
         }
-
-
 
 
         inner class CustomViewHolder : RecyclerView.ViewHolder {
@@ -223,15 +225,10 @@ class DetailTripActivity : AppCompatActivity() {
             }
 
 
-
-
         }
 
 
-
     }
-
-
 
 
 }

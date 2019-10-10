@@ -41,7 +41,6 @@ class AddTripActivity : AppCompatActivity() {
     var firestore: FirebaseFirestore? = null
     private var auth: FirebaseAuth? = null
 
-    var resultOK : Boolean = false
     var regionDTO = RegionDTO()
 
 
@@ -110,15 +109,17 @@ class AddTripActivity : AppCompatActivity() {
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
                     var tmpUri = arrayListOf<Uri>()
+                    var tmpImageText = arrayListOf<String>()
                     for (i in photoUri.iterator()) {
                         tmpUri.add(i)
+                        tmpImageText.add("")
                     }
-                    list.add(addRegionData(name1, name2, tmpUri))
+                    list.add(addRegionData(name1, name2, tmpUri, tmpImageText))
                     var tmpUriString = arrayListOf<String>()
                     for (i in photoUriString.iterator()) {
                         tmpUriString.add(i)
                     }
-                    nameList.add(RegionNameAndPhoto(name1, name2, tmpUriString)) /////////// 임시로
+                    nameList.add(RegionNameAndPhoto(name1, name2, tmpUriString, tmpImageText)) /////////// 임시로
                     photoUri.removeAll(photoUri)
                     photoUriString.removeAll(photoUriString)
                     mAdapter.notifyDataSetChanged() }
@@ -127,7 +128,7 @@ class AddTripActivity : AppCompatActivity() {
 
             //val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
             val view = layoutInflater.inflate(R.layout.edit_region, null)
-            //Glide.with(view).load(R.drawable.abc_ic_star_black_48dp).into(view.imageView1)
+
             builder.setView(view)
 
             val sp1Adapter = ArrayAdapter.createFromResource(this, R.array.si_do, android.R.layout.simple_spinner_dropdown_item)

@@ -2,6 +2,8 @@ package com.seunggom.tripmanager
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
 
     override fun onBindViewHolder(p0: CustomViewHolder, p1: Int) {
         p0.bind(list[p1], context)
+        p0.editImageText(list[p1])
     }
 
     override fun getItemCount(): Int {
@@ -88,7 +91,48 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
 
             }
         }
+
+        fun editImageText(list: addRegionData) {
+            val watcher = object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    if(s.hashCode() == itemView.imageText1.text.hashCode()) list.imageText!![0] = s.toString()
+                    else if(s.hashCode() == itemView.imageText2.text.hashCode()) list.imageText!![1] = s.toString()
+                    else if(s.hashCode() == itemView.imageText3.text.hashCode()) list.imageText!![2] = s.toString()
+                    else if(s.hashCode() == itemView.imageText4.text.hashCode()) list.imageText!![3] = s.toString()
+                    else if(s.hashCode() == itemView.imageText5.text.hashCode()) list.imageText!![4] = s.toString()
+                    else if(s.hashCode() == itemView.imageText6.text.hashCode()) list.imageText!![5] = s.toString()
+                    else if(s.hashCode() == itemView.imageText7.text.hashCode()) list.imageText!![6] = s.toString()
+                    else if(s.hashCode() == itemView.imageText8.text.hashCode()) list.imageText!![7] = s.toString()
+                    else if(s.hashCode() == itemView.imageText9.text.hashCode()) list.imageText!![8] = s.toString()
+
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+                }
+            }
+            itemView.imageText1.addTextChangedListener(watcher)
+            itemView.imageText2.addTextChangedListener(watcher)
+            itemView.imageText3.addTextChangedListener(watcher)
+            itemView.imageText4.addTextChangedListener(watcher)
+            itemView.imageText5.addTextChangedListener(watcher)
+            itemView.imageText6.addTextChangedListener(watcher)
+            itemView.imageText7.addTextChangedListener(watcher)
+            itemView.imageText8.addTextChangedListener(watcher)
+            itemView.imageText9.addTextChangedListener(watcher)
+
+
+
+        }
+
+
     }
+
+
 }
 // http://blog.naver.com/PostView.nhn?blogId=artisan_ryu&logNo=220797549440&parentCategoryNo=&categoryNo=56&viewDate=&isShowPopularPosts=false&from=postView
 // http://www.masterqna.com/android/67562/recyclerview%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-edittext%EB%A5%BC-gettext%ED%95%A0%EB%A0%A4%EA%B3%A0%ED%95%98%EB%8A%94%EB%8D%B0%EC%9A%94

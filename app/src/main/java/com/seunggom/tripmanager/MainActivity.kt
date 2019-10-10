@@ -20,7 +20,6 @@ var mapimages = arrayListOf<Bitmap>()
 class MainActivity : AppCompatActivity(), MapFragment.loadCompleteListener  {
 
 
-
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_map -> {
