@@ -78,6 +78,7 @@ class DetailTripActivity : AppCompatActivity() {
                     var imgView : ImageView? = null
                     when(j) {
                         0 -> {
+                            viewHolder.detail_CardView1.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView1_dtl)
                             viewHolder.imageView1_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView1_dtl
@@ -85,6 +86,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView1_dtl.visibility = View.VISIBLE
                         }
                         1 -> {
+                            viewHolder.detail_CardView2.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView2_dtl)
                             viewHolder.imageView2_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView2_dtl
@@ -92,6 +94,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView2_dtl.visibility = View.VISIBLE
                         }
                         2 -> {
+                            viewHolder.detail_CardView3.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView3_dtl)
                             viewHolder.imageView3_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView3_dtl
@@ -99,6 +102,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView3_dtl.visibility = View.VISIBLE
                         }
                         3 -> {
+                            viewHolder.detail_CardView4.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView4_dtl)
                             viewHolder.imageView4_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView4_dtl
@@ -106,6 +110,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView4_dtl.visibility = View.VISIBLE
                         }
                         4 -> {
+                            viewHolder.detail_CardView5.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView5_dtl)
                             viewHolder.imageView5_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView5_dtl
@@ -113,6 +118,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView5_dtl.visibility = View.VISIBLE
                         }
                         5 -> {
+                            viewHolder.detail_CardView6.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView6_dtl)
                             viewHolder.imageView6_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView6_dtl
@@ -120,6 +126,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView6_dtl.visibility = View.VISIBLE
                         }
                         6 -> {
+                            viewHolder.detail_CardView7.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView7_dtl)
                             viewHolder.imageView7_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView7_dtl
@@ -127,6 +134,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView7_dtl.visibility = View.VISIBLE
                         }
                         7 -> {
+                            viewHolder.detail_CardView8.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView8_dtl)
                             viewHolder.imageView8_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView8_dtl
@@ -134,6 +142,7 @@ class DetailTripActivity : AppCompatActivity() {
                             viewHolder.textView8_dtl.visibility = View.VISIBLE
                         }
                         8 -> {
+                            viewHolder.detail_CardView9.visibility = View.VISIBLE
                             Glide.with(viewHolder).load(realUri).into(viewHolder.imageView9_dtl)
                             viewHolder.imageView9_dtl.visibility = View.VISIBLE
                             imgView = viewHolder.imageView9_dtl

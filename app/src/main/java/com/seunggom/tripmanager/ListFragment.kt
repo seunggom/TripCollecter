@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,10 +20,12 @@ import com.seunggom.tripmanager.model.ContentDTO
 import com.seunggom.tripmanager.model.RegionDTO
 import com.squareup.okhttp.OkHttpClient
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.list_trip.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ListFragment : Fragment() {
@@ -31,7 +34,10 @@ class ListFragment : Fragment() {
     var mainView: View? = null
     var okHttpClient: OkHttpClient? = null
     val storage = FirebaseStorage.getInstance("gs://tripcollecter-6499f.appspot.com")
-
+    var filter_region : Int = 0
+    var filter_sort : Int = 0 // 0이면 업로드 순으로, 1이면 여행 날짜 순으로 정렬
+    var all_contentDTOs: ArrayList<ContentDTO> = ArrayList()
+    var loading_finish = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,18 +57,31 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        mainView?.list_spinner!!.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                filter_region = position
+            }
+        }
+
         mainView?.ListRecyclerView?.layoutManager =  LinearLayoutManager(activity)
         mainView?.ListRecyclerView?.adapter = RecyclerViewAdapter()
         //var mainActivity = activity as MainActivity
         //mainActivity.progressBar.visibility = View.INVISIBLE
 
+        list_set_button.setOnClickListener {
+            if(loading_finish) {
+                if(mainView?.radioGroup2!!.checkedRadioButtonId == R.id.radioButton_startdate) filter_sort = 1
+                else filter_sort = 0
+                (mainView?.ListRecyclerView?.adapter as RecyclerViewAdapter).filter(filter_region, filter_sort)
+                Toast.makeText(activity, "필터를 적용합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
-
-
-    override fun onStop() {
-        super.onStop()
-    }
 
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -74,16 +93,19 @@ class ListFragment : Fragment() {
             val userEmail = auth!!.currentUser?.email
             firestore?.collection("trips")?.orderBy("timestamp")!!.get().addOnSuccessListener { documents ->
                 contentDTOs.clear()
+                all_contentDTOs.clear()
 
                 for (document in documents) {
                     if (document["userId"] == userEmail) {
                         var item = document.toObject(ContentDTO::class.java)!!
                         contentDTOs.add(item)
+                        all_contentDTOs.add(item)
                     }
                 }
                 var mainActivity = activity as MainActivity
                 mainActivity.progressBar.visibility = View.INVISIBLE
                 notifyDataSetChanged()
+                loading_finish = true
             }
         }
 
@@ -131,7 +153,7 @@ class ListFragment : Fragment() {
                     return@setOnLongClickListener true
                 }
 
-                }
+            }
         }
 
         fun callDialog_for_delete_log(content : ContentDTO, index: Int) {
@@ -228,6 +250,56 @@ class ListFragment : Fragment() {
             })
             delete_dialog.show()
 
+        }
+
+        fun filter(region:Int, sort:Int) {
+            contentDTOs.clear()
+
+            for(i in all_contentDTOs.iterator()) {
+                if(region == 0) contentDTOs.add(i)
+                else {
+                    for(j in i.regionName!!.iterator()) {
+                        if(region == 1 && j.name1 == "특별/광역시") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 2 && j.name1 == "경기도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 3 && j.name1 == "강원도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 4 && j.name1 == "충청북도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 5 && j.name1 == "충청남도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 6 && j.name1 == "경상북도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 7 && j.name1 == "경상남도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 8 && j.name1 == "전라북도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 9 && j.name1 == "전라남도") {
+                            contentDTOs.add(i); break
+                        }
+                        else if(region == 10 && j.name1 == "제주특별자치시") {
+                            contentDTOs.add(i); break
+                        }
+                    }
+                }
+            }
+
+            var sorting1 = Comparator<ContentDTO> { c1: ContentDTO, c2: ContentDTO ->
+                return@Comparator c1.startDate!!.compareTo(c2.startDate!!)
+            }
+
+            if(sort == 1) Collections.sort(contentDTOs, sorting1)
+
+            notifyDataSetChanged()
         }
 
     }

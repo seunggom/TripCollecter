@@ -4,7 +4,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content" android:id="@+id/search_result_cardview"
                                     app:cardBackgroundColor="@color/com_facebook_button_login_silver_background_color"
-                                    app:contentPadding="3dp" app:cardCornerRadius="10dp" android:clickable="true">
+                                    app:cardCornerRadius="10dp" android:clickable="true"
+                                    app:cardElevation="20dp" android:layout_margin="2dp">
     <View
             android:id="@+id/divider10"
             android:layout_width="match_parent"

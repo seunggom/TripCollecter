@@ -4,14 +4,89 @@
               android:orientation="vertical" android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <ProgressBar
-            style="?android:attr/progressBarStyle"
+    <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/progressBar" android:visibility="gone"/>
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/ListRecyclerView"
-            android:layout_width="match_parent" android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+            app:cardBackgroundColor="@color/com_facebook_button_login_silver_background_color_pressed"
+            app:contentPadding="5dp" app:cardCornerRadius="10dp">
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View
+                    android:id="@+id/divider14"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/list_titleText" android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"/>
+            <TextView
+                    android:text="필터 적용하기"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/list_titleText"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="지역 설정"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/list_textView3"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/list_spinner"
+                    app:layout_constraintBottom_toBottomOf="@+id/list_spinner"/>
+            <Spinner
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" android:id="@+id/list_spinner"
+                    app:layout_constraintStart_toEndOf="@+id/list_textView3" android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/divider14"
+                    android:entries="@array/si_do_for_filter"/>
+            <TextView
+                    android:text="순서 정렬"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/list_textView4"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/radioGroup2"
+                    app:layout_constraintBottom_toBottomOf="@+id/radioGroup2"/>
+            <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:checkedButton="@+id/radioButton_upload"
+                    android:id="@+id/radioGroup2"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/list_spinner"
+                    app:layout_constraintStart_toEndOf="@+id/list_textView4" android:layout_marginStart="8dp">
+                <RadioButton
+                        android:text="업로드 순"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioButton_upload" android:layout_weight="1"/>
+                <RadioButton
+                        android:text="여행 날짜 순"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/radioButton_startdate"
+                        android:layout_weight="1"/>
+            </RadioGroup>
+            <Button
+                    android:text="적용"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/list_set_button" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+    <View
+            android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:padding="5dp" android:layout_margin="5dp"/>
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:fillViewport="true">
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/ListRecyclerView"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

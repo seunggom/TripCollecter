@@ -8,7 +8,7 @@
                 android:focusableInTouchMode="true">
 
     <ImageView
-            app:srcCompat="@drawable/login_img" android:id="@+id/login_img" android:layout_height="match_parent"
+            app:srcCompat="@drawable/login_image" android:id="@+id/login_img" android:layout_height="match_parent"
             android:layout_width="match_parent" android:scaleType="centerCrop" android:visibility="visible"
             android:alpha="0.5"
             android:contentDescription="TODO"/>
@@ -28,7 +28,7 @@
             android:orientation="vertical" android:gravity="center">
 
         <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:id="@+id/image_logo"
                 android:gravity="center"
@@ -38,7 +38,7 @@
                 android:layout_marginEnd="20dp"
 
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/title"
+                android:src="@drawable/title2"
         />
         <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -86,7 +86,6 @@
 
         <Button
                 android:id="@+id/facebook_login_button"
-                android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="10dp"
@@ -96,7 +95,7 @@
                 android:background="@drawable/btn_signin_facebook"
                 android:text="@string/signin_facebook"
                 android:textColor="@color/colorWhite"
-        />
+                android:layout_width="wrap_content"/>
 
 
     </LinearLayout>
