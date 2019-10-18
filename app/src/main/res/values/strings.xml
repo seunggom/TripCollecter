@@ -37,6 +37,7 @@
         <item>전라북도</item>
         <item>전라남도</item>
         <item>제주특별자치시</item>
+        <item>직접입력</item>
     </string-array>
 
     <string-array name="si_do_0">

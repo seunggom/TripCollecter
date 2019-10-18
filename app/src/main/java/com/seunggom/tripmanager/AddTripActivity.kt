@@ -74,7 +74,8 @@ class AddTripActivity : AppCompatActivity() {
 
             var date_listener  = object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    date1text.text = "${year}.${month + 1}.${dayOfMonth}"
+                    //date1text.text = "${year}.${month + 1}.${dayOfMonth}"
+                    date1text.text = String.format("%04d.%02d.%02d", year, month+1, dayOfMonth)
                 }
             }
             var builder = DatePickerDialog(this, date_listener, year, month, day)
@@ -89,7 +90,8 @@ class AddTripActivity : AppCompatActivity() {
 
             var date_listener  = object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    date2text.text = "${year}.${month + 1}.${dayOfMonth}"
+                    //date2text.text = "${year}.${month + 1}.${dayOfMonth}"
+                    date2text.text = String.format("%04d.%02d.%02d", year, month+1, dayOfMonth)
                 }
             }
 
@@ -105,6 +107,8 @@ class AddTripActivity : AppCompatActivity() {
 
 
             val builder = AlertDialog.Builder(this)
+            //val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
+            val view = layoutInflater.inflate(R.layout.edit_region, null)
 
             builder.setTitle("지역 & 사진 추가하기")
                 .setPositiveButton("추가") {dialog, which ->
@@ -114,6 +118,8 @@ class AddTripActivity : AppCompatActivity() {
                         tmpUri.add(i)
                         tmpImageText.add("")
                     }
+                    if(name1 == "직접입력") name2 = view.regionName2_edit.text.toString()
+
                     list.add(addRegionData(name1, name2, tmpUri, tmpImageText))
                     var tmpUriString = arrayListOf<String>()
                     for (i in photoUriString.iterator()) {
@@ -126,8 +132,7 @@ class AddTripActivity : AppCompatActivity() {
                 .setNeutralButton("취소", null)
                 .create()
 
-            //val view = LayoutInflater.from(this).inflate(R.layout.edit_region, null, false)
-            val view = layoutInflater.inflate(R.layout.edit_region, null)
+
 
             builder.setView(view)
 
@@ -155,9 +160,19 @@ class AddTripActivity : AppCompatActivity() {
                         9 -> si_do_pos = R.array.si_do_9
                         10 -> si_do_pos = R.array.si_do_10
                     }
+                    if(position == 11) {
+                        view.regionName2_edit.visibility = View.VISIBLE
+                        view.textView2_edit.visibility = View.INVISIBLE
+                        view.spinner2.visibility = View.INVISIBLE
+                    }
+                    else {
+                        view.regionName2_edit.visibility = View.INVISIBLE
+                        view.textView2_edit.visibility = View.VISIBLE
+                        view.spinner2.visibility = View.VISIBLE
 
-                    view.spinner2.adapter = ArrayAdapter.createFromResource(this@AddTripActivity, si_do_pos, android.R.layout.simple_spinner_dropdown_item)
-
+                        view.spinner2.adapter = ArrayAdapter.createFromResource(this@AddTripActivity, si_do_pos,
+                            android.R.layout.simple_spinner_dropdown_item)
+                    }
                 }
             }
 
@@ -184,12 +199,13 @@ class AddTripActivity : AppCompatActivity() {
 
         addDataButton.setOnClickListener {
 
-            contentUpload()
-            startActivity<MainActivity>()
-            finish()
+            if(checkIsDataNull()) {
+                contentUpload()
+                startActivity<MainActivity>()
+                finish()
+            }
         }
     }
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -227,6 +243,36 @@ class AddTripActivity : AppCompatActivity() {
                 photoUriString = imgUriString
             }
         }
+    }
+
+    fun checkIsDataNull() : Boolean {
+        if(addTripName.text.toString() == "") {
+            toast("여행 제목을 입력해주세요")
+            return false
+        }
+        if(date1text.text.toString() == "YYYY.MM.DD" || date2text.text.toString() == "YYYY.MM.DD") {
+            toast("여행 날짜를 설정해주세요")
+            return false
+        }
+        if((date1text.text.toString()).compareTo(date2text.text.toString()) > 0) {
+            toast("여행 시작 및 종료 날짜가 맞지 않습니다")
+            return false
+        }
+        if(ratingBar.rating.toInt() == 0) {
+            toast("여행 평점을 0.5~5 사이 점수로 설정해주세요")
+            return false
+        }
+        if(nameList.size == 0) {
+            toast("지역을 추가해주세요")
+            return false
+        }
+        if(explainText.text.toString() == "") {
+            toast("여행 설명을 입력해주세요")
+            return false
+        }
+
+
+        return true
     }
 
 
@@ -283,19 +329,21 @@ class AddTripActivity : AppCompatActivity() {
                         10 -> stringArray2 = resources.getStringArray(R.array.si_do_10)
                     }
 
-                    for(k in 0..stringArray2!!.size-1) {
-                        if (stringArray2[k] == i.name2) {
-                            when (j) {
-                                1 -> regionDTO.si_do_1[k]++
-                                2 -> regionDTO.si_do_2[k]++
-                                3 -> regionDTO.si_do_3[k]++
-                                4 -> regionDTO.si_do_4[k]++
-                                5 -> regionDTO.si_do_5[k]++
-                                6 -> regionDTO.si_do_6[k]++
-                                7 -> regionDTO.si_do_7[k]++
-                                8 -> regionDTO.si_do_8[k]++
-                                9 -> regionDTO.si_do_9[k]++
-                                10 -> regionDTO.si_do_10[k]++
+                    if(stringArray2 != null) {
+                        for (k in 0..stringArray2!!.size - 1) {
+                            if (stringArray2[k] == i.name2) {
+                                when (j) {
+                                    1 -> regionDTO.si_do_1[k]++
+                                    2 -> regionDTO.si_do_2[k]++
+                                    3 -> regionDTO.si_do_3[k]++
+                                    4 -> regionDTO.si_do_4[k]++
+                                    5 -> regionDTO.si_do_5[k]++
+                                    6 -> regionDTO.si_do_6[k]++
+                                    7 -> regionDTO.si_do_7[k]++
+                                    8 -> regionDTO.si_do_8[k]++
+                                    9 -> regionDTO.si_do_9[k]++
+                                    10 -> regionDTO.si_do_10[k]++
+                                }
                             }
                         }
                     }
@@ -311,7 +359,6 @@ class AddTripActivity : AppCompatActivity() {
         progress_bar.visibility = View.GONE
         image_loaded = false
         mapimages.clear()
-
 
 
     }

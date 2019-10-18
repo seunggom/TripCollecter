@@ -110,11 +110,13 @@ class SearchFragment : Fragment() {
         override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
             val viewHolder = (p0 as SearchViewHolder).itemView
             viewHolder.srText_title.text = contentDTOs[p1].title.toString()
-            viewHolder.srText_uploadDate.text = SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.KOREA).format(contentDTOs[p1].timestamp) + " uploaded"
+            viewHolder.srText_uploadDate.text = contentDTOs[p1].userId + " / " +
+                    SimpleDateFormat("yyyy.MM.dd", Locale.KOREA).format(contentDTOs[p1].timestamp) + " 업로드"
             var regionNames : String = ""
             var iter = 1
             for (i in contentDTOs[p1].regionName!!.iterator()) {
-                regionNames = regionNames + i.name1 + " " + i.name2
+                if(i.name1 == "직접입력") regionNames = regionNames + i.name2
+                else regionNames = regionNames + i.name1 + " " + i.name2
                 if (iter != contentDTOs[p1].regionName!!.size) regionNames = regionNames + " + "
                 iter++
             }

@@ -127,7 +127,8 @@ class ListFragment : Fragment() {
             var regionNames : String = ""
             var iter = 1
             for (i in contentDTOs[position].regionName!!.iterator()) {
-                regionNames = regionNames + i.name1 + " " + i.name2
+                if(i.name1 == "직접입력") regionNames = regionNames + i.name2
+                else regionNames = regionNames + i.name1 + " " + i.name2
                 if (iter != contentDTOs[position].regionName!!.size) regionNames = regionNames + " + "
                 iter++
             }

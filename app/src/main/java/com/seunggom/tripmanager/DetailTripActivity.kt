@@ -55,7 +55,8 @@ class DetailTripActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
             val viewHolder = (p0 as CustomViewHolder).itemView
-            viewHolder.name1_dtl.text = region[p1].name1
+            if(region[p1].name1 == "직접입력") viewHolder.name1_dtl.visibility = View.GONE
+            else viewHolder.name1_dtl.text = region[p1].name1
             viewHolder.name2_dtl.text = region[p1].name2
 
             var screen = windowManager.defaultDisplay
@@ -151,7 +152,7 @@ class DetailTripActivity : AppCompatActivity() {
                         }
                     }
                     imgView!!.layoutParams.height = screenSize.x / 2
-                    imgView!!.layoutParams.width = screenSize.x / 2
+                    imgView!!.layoutParams.width = (screenSize.x / 1.5).toInt()
                     imgView!!.requestLayout()
                 }
 

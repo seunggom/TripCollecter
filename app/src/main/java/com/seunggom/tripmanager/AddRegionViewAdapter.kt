@@ -35,7 +35,8 @@ class AddRegionViewAdapter(val context: Context, val list: ArrayList<addRegionDa
 
 
         fun bind(list: addRegionData, context: Context) {
-            a.text = list.name1
+            if(list.name1 == "직접입력") a.visibility = View.GONE
+            else a.text = list.name1
             b.text = list.name2
             var count = list.imageUri!!.size
             for (i in 0..count-1) {
