@@ -194,19 +194,21 @@ class ListFragment : Fragment() {
                                                     10 -> stringArray2 = resources.getStringArray(R.array.si_do_10)
                                                 }
 
-                                                for (k in 0..stringArray2!!.size - 1) {
-                                                    if (stringArray2[k] == i.name2) {
-                                                        when (j) {
-                                                            1 -> regionDTO.si_do_1[k]--
-                                                            2 -> regionDTO.si_do_2[k]--
-                                                            3 -> regionDTO.si_do_3[k]--
-                                                            4 -> regionDTO.si_do_4[k]--
-                                                            5 -> regionDTO.si_do_5[k]--
-                                                            6 -> regionDTO.si_do_6[k]--
-                                                            7 -> regionDTO.si_do_7[k]--
-                                                            8 -> regionDTO.si_do_8[k]--
-                                                            9 -> regionDTO.si_do_9[k]--
-                                                            10 -> regionDTO.si_do_10[k]--
+                                                if(stringArray2 != null) {
+                                                    for (k in 0..stringArray2!!.size - 1) {
+                                                        if (stringArray2[k] == i.name2) {
+                                                            when (j) {
+                                                                1 -> regionDTO.si_do_1[k]--
+                                                                2 -> regionDTO.si_do_2[k]--
+                                                                3 -> regionDTO.si_do_3[k]--
+                                                                4 -> regionDTO.si_do_4[k]--
+                                                                5 -> regionDTO.si_do_5[k]--
+                                                                6 -> regionDTO.si_do_6[k]--
+                                                                7 -> regionDTO.si_do_7[k]--
+                                                                8 -> regionDTO.si_do_8[k]--
+                                                                9 -> regionDTO.si_do_9[k]--
+                                                                10 -> regionDTO.si_do_10[k]--
+                                                            }
                                                         }
                                                     }
                                                 }
